@@ -2,8 +2,10 @@ import Blackoverlay from "./blackOverlay.jsx";
 import Form from "./form.jsx";
 import Forminput from "./formInput.jsx";
 import { useSelectedItem } from "../hooks/useSelectedItem";
+import { useState } from "react";
 
 export default function Refineinput() {
+    const [recipeSelected, setRecipeSelected] = useState(0)
     const formList = [
         {
             percentage: false,
@@ -31,26 +33,23 @@ export default function Refineinput() {
             id:"focuscost-form"
         }
     ]
-    const recipeList = [
-        {
-            text: 1,
-            peer: "recipe1",
-            id: "recipe1-form"
-        },
-        {
-            text: 2,
-            peer: "recipe2",
-            id: "recipe2-form"
-        },
-        {
-            text: 3,
-            peer: "recipe3",
-            id: "recipe3-form"
-        }
-    ]
-    
+    const recipeList = []
+    const handleRecipe = (id) => {
+        setRecipeSelected(id)
+    }
+    console.log(recipeSelected)
     const removeSelected = useSelectedItem((state) => state.removeSelected)
     const selectedData = useSelectedItem((state) => state.selectedData)
+    const test = selectedData["craft-resource"].map((item,index) => {
+        recipeList.push(
+            {
+                text: index,
+                peer: `recipe${index}`,
+                id: `recipe${index}-form`,
+                data: item
+            }
+        )
+    })
     
     return(
         <>
@@ -69,25 +68,25 @@ export default function Refineinput() {
                         </div>
                     </div>
                     <div className="flex flex-col gap-3">
-                    {selectedData["craft-resource"] !== null ? selectedData["craft-resource"][0].map((res) => {
-                        console.log(res)
+                    {recipeList.length > 0 ? recipeList[recipeSelected].data.map((res) => {
                         return (
                             <Imageform key={Math.floor(Math.random() * 9999)} url={res["resource-items"].ItemsImageUrl}
                         text={"Buy price"} 
                         additionalText={"*Item need for every craft "} 
                         highlightedText={res.Count}/>
                         )
-                    }
-                        
-                    ) : null}
-                       
-
+                    }) : null}
+                    {recipeList.length > 1 ? (
+                        <>
                         <div className="max-w-[30ch] pl-2">
                             <span className="text-xs">This item has a variety of recipes to craft you can choose one of the recipes below.</span>
                         </div>
                         <div className="flex items-center gap-2">
-                        {recipeList.length > 0 ? recipeList.map((item,index) => <Radiorecipe key={index} text={item.text} id={item.id} peer={item.peer}/>) : null}
+                        {recipeList.length > 0 ? recipeList.map((item,index) => <Radiorecipe key={index} recipeSelected={recipeSelected} handleRecipe={handleRecipe} text={item.text} id={item.id} peer={item.peer}/>) : null}
                             </div>
+                            </>
+                    ): null}
+                       
                         <Submitbutton />
                     </div>
                 </div>
@@ -104,14 +103,14 @@ function Title() {
     )
 }
 
-function Radiorecipe({text,id,peer}) {
+function Radiorecipe({recipeSelected, handleRecipe,text,id,peer}) {
     return(
         
         <>
-            <input type="radio" className={`peer/${peer} appearance-none`} id={id} name="recipe-radio"/>
+            <input type="radio" className={`peer/${peer} appearance-none`} id={id} name="recipe-radio" onChange={() => handleRecipe(text)} checked={recipeSelected == id}/>
                 <label htmlFor={id}
                 className={`cursor-pointer hover:bg-bd-grey bg-bg-transparent peer-checked/${peer}:bg-bd-grey border border-bd-grey w-8 h-8 rounded-lg text-center inline-flex items-center justify-center`}>
-                {text}</label>
+                {text + 1}</label>
         </>
     )
 }

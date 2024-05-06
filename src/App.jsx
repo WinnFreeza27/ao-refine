@@ -4,6 +4,7 @@ import ListItem from './component/itemList'
 import { useQuery } from 'react-query'
 import fetchData from './hooks/useFetch'
 import { useData } from './hooks/useData'
+import convertData from './utils/convertData'
 
 
 function App() {
@@ -13,7 +14,9 @@ function App() {
     fetchData() ,{  
       refetchOnWindowFocus: false,
       onSuccess: (item) => {
-        updateData(item)
+        console.log(item)
+        const convert = convertData(item)
+        updateData(convert)
       }
     }
   )

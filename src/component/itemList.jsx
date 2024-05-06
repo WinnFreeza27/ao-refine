@@ -12,9 +12,9 @@ export default function ListItem() {
     const data = useData((state) => state.data)
     const filter = useFiltering((state) => state.filter)
      //convert the data into my format
-     const dataConvert = convertData(data)
      //update the filter data
-    const filteredData = filterFn(dataConvert, filter)
+    
+    const filteredData = filterFn(data, filter)
     const selected = useSelectedItem((state) => state.selected)
     const updateSelected = useSelectedItem((state) => state.updateSelected)
     const updateSelectedData = useSelectedItem((state) => state.updateSelectedData)
