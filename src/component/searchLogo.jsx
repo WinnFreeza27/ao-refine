@@ -8,6 +8,7 @@ export default function Searchlogo() {
         <div className="grid text-sm sm:text-base grid-cols-5 grid-rows-2 lg:grid-cols-[repeat(4,_1fr)_2fr] justify-around gap-x-4 p-3 items-center bg-transparent auto-rows-max xl:grid-cols-[repeat(4,_1fr)_3fr]">
             <div className="w-10 h-10 justify-self-start">
                 <div className="w-full">
+                <a href="https://github.com/WinnFreeza27/ao-refine/tree/mezo">
                 <svg className="w-full" width="40px" viewBox="0 0 20 20" version="1.1" xmlns="http://www.w3.org/2000/svg">
                     <g id="Page-1" stroke="none" strokeWidth="1" fill="#FFFFFF" fillRule="evenodd">
                         <g id="Dribbble-Light-Preview" transform="translate(-140.000000, -7559.000000)" fill="#FFFFFF">
@@ -18,6 +19,7 @@ export default function Searchlogo() {
                         </g>
                     </g>
                 </svg>
+                </a>
                 </div>
             </div>
             <Searchbox />

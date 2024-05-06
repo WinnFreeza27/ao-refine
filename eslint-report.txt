@@ -1,0 +1,124 @@
+
+D:\Local Project\albion-refine\dist\assets\index-CRF_vfYU.js
+   9:1588   error  Do not access Object.prototype method 'hasOwnProperty' from target object  no-prototype-builtins
+   9:4551   error  Do not access Object.prototype method 'hasOwnProperty' from target object  no-prototype-builtins
+  17:377    error  Do not access Object.prototype method 'hasOwnProperty' from target object  no-prototype-builtins
+  25:928    error  'setImmediate' is not defined                                              no-undef
+  33:597    error  Unexpected combined character in character class                           no-misleading-character-class
+  33:3024   error  Unnecessary escape character: \-                                           no-useless-escape
+  33:4913   error  Do not access Object.prototype method 'hasOwnProperty' from target object  no-prototype-builtins
+  37:202    error  Expected a conditional expression and instead saw an assignment            no-cond-assign
+  37:1216   error  Empty block statement                                                      no-empty
+  37:2389   error  Do not access Object.prototype method 'hasOwnProperty' from target object  no-prototype-builtins
+  37:3868   error  Do not access Object.prototype method 'hasOwnProperty' from target object  no-prototype-builtins
+  37:3909   error  Do not access Object.prototype method 'hasOwnProperty' from target object  no-prototype-builtins
+  37:4076   error  Do not access Object.prototype method 'hasOwnProperty' from target object  no-prototype-builtins
+  37:4103   error  Do not access Object.prototype method 'hasOwnProperty' from target object  no-prototype-builtins
+  37:4694   error  Do not access Object.prototype method 'hasOwnProperty' from target object  no-prototype-builtins
+  37:6030   error  'MSApp' is not defined                                                     no-undef
+  37:6078   error  'MSApp' is not defined                                                     no-undef
+  37:7458   error  Do not access Object.prototype method 'hasOwnProperty' from target object  no-prototype-builtins
+  37:7551   error  Do not access Object.prototype method 'hasOwnProperty' from target object  no-prototype-builtins
+  37:8633   error  Expected a conditional expression and instead saw an assignment            no-cond-assign
+  37:9654   error  Expected to return a value in method 'get'                                 getter-return
+  37:9787   error  'r' is defined but never used                                              no-unused-vars
+  37:9789   error  'l' is defined but never used                                              no-unused-vars
+  37:9791   error  'i' is defined but never used                                              no-unused-vars
+  37:9793   error  'o' is defined but never used                                              no-unused-vars
+  37:9795   error  'u' is defined but never used                                              no-unused-vars
+  37:9797   error  's' is defined but never used                                              no-unused-vars
+  37:9970   error  'e' is defined but never used                                              no-unused-vars
+  37:9972   error  't' is defined but never used                                              no-unused-vars
+  37:9974   error  'n' is defined but never used                                              no-unused-vars
+  37:9976   error  'r' is defined but never used                                              no-unused-vars
+  37:9978   error  'l' is defined but never used                                              no-unused-vars
+  37:9980   error  'i' is defined but never used                                              no-unused-vars
+  37:9982   error  'o' is defined but never used                                              no-unused-vars
+  37:9984   error  'u' is defined but never used                                              no-unused-vars
+  37:9986   error  's' is defined but never used                                              no-unused-vars
+  37:10038  error  'e' is defined but never used                                              no-unused-vars
+  37:10040  error  't' is defined but never used                                              no-unused-vars
+  37:10042  error  'n' is defined but never used                                              no-unused-vars
+  37:10044  error  'r' is defined but never used                                              no-unused-vars
+  37:10046  error  'l' is defined but never used                                              no-unused-vars
+  37:10048  error  'i' is defined but never used                                              no-unused-vars
+  37:10050  error  'o' is defined but never used                                              no-unused-vars
+  37:10052  error  'u' is defined but never used                                              no-unused-vars
+  37:10054  error  's' is defined but never used                                              no-unused-vars
+  37:11886  error  Empty block statement                                                      no-empty
+  37:19766  error  Do not access Object.prototype method 'hasOwnProperty' from target object  no-prototype-builtins
+  37:20108  error  Invalid typeof comparison value                                            valid-typeof
+  37:20282  error  Invalid typeof comparison value                                            valid-typeof
+  37:22147  error  Expected a conditional expression and instead saw an assignment            no-cond-assign
+  37:27687  error  Expected a conditional expression and instead saw an assignment            no-cond-assign
+  37:29153  error  Do not access Object.prototype method 'hasOwnProperty' from target object  no-prototype-builtins
+  37:33253  error  Expected a 'break' statement before 'case'                                 no-fallthrough
+  37:33440  error  Expected a 'break' statement before 'case'                                 no-fallthrough
+  37:34557  error  Expected a conditional expression and instead saw an assignment            no-cond-assign
+  37:36002  error  Expected a 'break' statement before 'case'                                 no-fallthrough
+  37:37432  error  Unexpected control character(s) in regular expression: \x00                no-control-regex
+  38:1506   error  Expected a conditional expression and instead saw an assignment            no-cond-assign
+  38:1606   error  Expected a conditional expression and instead saw an assignment            no-cond-assign
+  38:8988   error  Expected a 'break' statement before 'case'                                 no-fallthrough
+  38:9444   error  Unexpected constant condition                                              no-constant-condition
+  38:10055  error  Expected a conditional expression and instead saw an assignment            no-cond-assign
+  38:10918  error  Expected a conditional expression and instead saw an assignment            no-cond-assign
+  38:18212  error  Expected a conditional expression and instead saw an assignment            no-cond-assign
+  38:24718  error  Empty block statement                                                      no-empty
+  38:24727  error  Empty block statement                                                      no-empty
+  40:72     error  'n' is defined but never used                                              no-unused-vars
+  40:3959   error  Expected a conditional expression and instead saw an assignment            no-cond-assign
+  40:5081   error  Expected a conditional expression and instead saw an assignment            no-cond-assign
+  40:12835  error  Do not access Object.prototype method 'hasOwnProperty' from target object  no-prototype-builtins
+  40:12856  error  Do not access Object.prototype method 'hasOwnProperty' from target object  no-prototype-builtins
+  40:12926  error  Do not access Object.prototype method 'hasOwnProperty' from target object  no-prototype-builtins
+  40:13108  error  Do not access Object.prototype method 'hasOwnProperty' from target object  no-prototype-builtins
+  40:13210  error  Do not access Object.prototype method 'hasOwnProperty' from target object  no-prototype-builtins
+  40:13290  error  Do not access Object.prototype method 'hasOwnProperty' from target object  no-prototype-builtins
+  40:13314  error  Do not access Object.prototype method 'hasOwnProperty' from target object  no-prototype-builtins
+  40:13366  error  Do not access Object.prototype method 'hasOwnProperty' from target object  no-prototype-builtins
+  40:13721  error  Do not access Object.prototype method 'hasOwnProperty' from target object  no-prototype-builtins
+  40:15903  error  Do not access Object.prototype method 'hasOwnProperty' from target object  no-prototype-builtins
+  40:16182  error  Do not access Object.prototype method 'hasOwnProperty' from target object  no-prototype-builtins
+  40:16628  error  Unnecessary escape character: \/                                           no-useless-escape
+  40:17498  error  Do not access Object.prototype method 'hasOwnProperty' from target object  no-prototype-builtins
+  40:17807  error  Do not access Object.prototype method 'hasOwnProperty' from target object  no-prototype-builtins
+  40:25800  error  Empty block statement                                                      no-empty
+  40:25835  error  Expected a 'break' statement before 'case'                                 no-fallthrough
+  40:29886  error  Do not access Object.prototype method 'hasOwnProperty' from target object  no-prototype-builtins
+  40:30863  error  't' is defined but never used                                              no-unused-vars
+  40:30865  error  'n' is defined but never used                                              no-unused-vars
+  40:30892  error  't' is defined but never used                                              no-unused-vars
+  40:30894  error  'n' is defined but never used                                              no-unused-vars
+  40:34557  error  Unexpected constant condition                                              no-constant-condition
+  40:39032  error  Unexpected constant condition                                              no-constant-condition
+  40:39313  error  Unexpected constant condition                                              no-constant-condition
+  40:42281  error  Empty block statement                                                      no-empty
+  40:52689  error  Expected a conditional expression and instead saw an assignment            no-cond-assign
+  40:54088  error  'Ps' is a function                                                         no-func-assign
+  40:54094  error  'Ts' is a function                                                         no-func-assign
+  40:55011  error  '__REACT_DEVTOOLS_GLOBAL_HOOK__' is not defined                            no-undef
+  40:55110  error  Empty block statement                                                      no-empty
+  40:57142  error  '__REACT_DEVTOOLS_GLOBAL_HOOK__' is not defined                            no-undef
+  40:57199  error  '__REACT_DEVTOOLS_GLOBAL_HOOK__' is not defined                            no-undef
+  56:1746   error  'n' is defined but never used                                              no-unused-vars
+  56:1786   error  't' is defined but never used                                              no-unused-vars
+
+D:\Local Project\albion-refine\src\hooks\useFetch.js
+  1:8   error  'axios' is defined but never used  no-unused-vars
+  5:24  error  '__SUPABASEKEY__' is not defined   no-undef
+
+D:\Local Project\albion-refine\src\hooks\useSelectedItem.js
+  6:39  error  'state' is defined but never used  no-unused-vars
+  7:32  error  'state' is defined but never used  no-unused-vars
+  8:43  error  'state' is defined but never used  no-unused-vars
+  9:33  error  'state' is defined but never used  no-unused-vars
+
+D:\Local Project\albion-refine\src\utils\convertData.js
+  3:11  error  'join' is assigned a value but never used  no-unused-vars
+
+D:\Local Project\albion-refine\vite.config.js
+  10:26  error  'process' is not defined  no-undef
+
+✖ 111 problems (111 errors, 0 warnings)
+
