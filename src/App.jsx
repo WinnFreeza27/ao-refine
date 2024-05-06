@@ -14,13 +14,11 @@ function App() {
     fetchData() ,{  
       refetchOnWindowFocus: false,
       onSuccess: (item) => {
-        console.log(item)
         const convert = convertData(item)
         updateData(convert)
       }
     }
   )
-  
   if(isLoading) return (<div>Loading...</div>)
   if(error) return (<div>Something error</div>)
 

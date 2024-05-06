@@ -51,7 +51,6 @@ function craftResourceToObj(data) {
 }
 
 function sortedItems(data) {
-    console.log(data)
     const sorted = data.sort((a,b) => {
         return a.ItemsName > b.ItemsName
     })

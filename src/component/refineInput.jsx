@@ -37,7 +37,6 @@ export default function Refineinput() {
     const handleRecipe = (id) => {
         setRecipeSelected(id)
     }
-    console.log(recipeSelected)
     const removeSelected = useSelectedItem((state) => state.removeSelected)
     const selectedData = useSelectedItem((state) => state.selectedData)
     const test = selectedData["craft-resource"].map((item,index) => {
