@@ -44,7 +44,10 @@
         @apply bg-bg-transparent border border-bd-grey rounded-lg
     }
     .refine-box{
-        @apply fixed top-4 lg:top-20 left-1/2 text-white -translate-x-1/2 z-20 w-[95%] lg:w-max flex flex-col justify-center items-center bg-bg-transparent border border-bd-grey p-2 rounded-lg overflow-hidden
+        @apply mb-3 fixed top-2 lg:top-20 left-1/2 text-white -translate-x-1/2 z-20 w-[95%] lg:w-max bg-bg-transparent border border-bd-grey p-2 rounded-lg overflow-auto
+    }
+    .refine-box{
+        max-height: calc(100vh - 20px)
     }
 }
 

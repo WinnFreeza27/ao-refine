@@ -5,6 +5,7 @@ import { useQuery } from 'react-query'
 import fetchData from './hooks/useFetch'
 import { useData } from './hooks/useData'
 import convertData from './utils/convertData'
+import Refineinput from './component/refineInput'
 
 
 function App() {
@@ -21,12 +22,12 @@ function App() {
   )
   if(isLoading) return (<div>Loading...</div>)
   if(error) return (<div>Something error</div>)
-
   return (
     
       <div className="h-full font-poppins bg-black">
         <Searchlogo />
         <ListItem />
+        <Refineinput />
       </div>
   )
 }
