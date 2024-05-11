@@ -5,7 +5,7 @@ import Searchbox from "./searchBox.jsx"
 
 export default function Searchlogo() {
     return (
-        <div className="grid text-sm sm:text-base grid-cols-5 grid-rows-2 lg:grid-cols-[repeat(4,_1fr)_2fr] justify-around gap-x-4 p-3 items-center bg-transparent auto-rows-max xl:grid-cols-[repeat(4,_1fr)_3fr]">
+        <div className="grid xl:max-w-[95%] 2xl:max-w-[90%] mt-5 mx-auto h-max text-sm sm:text-base grid-cols-5 grid-rows-2 lg:grid-cols-[repeat(4,_1fr)_2fr] justify-around gap-x-4 p-3 items-center bg-transparent auto-rows-max xl:grid-cols-[repeat(4,_1fr)_3fr]">
             <div className="w-10 h-10 justify-self-start">
                 <div className="w-full">
                 <a href="https://github.com/WinnFreeza27/ao-refine/tree/mezo">

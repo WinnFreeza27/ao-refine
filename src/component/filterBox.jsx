@@ -1,10 +1,5 @@
 import { useState } from 'react';
 import { useFiltering } from '../hooks/useFiltering';
-import { useData } from '../hooks/useData';
-import filterFn from '../utils/filterFn';
-import convertData from '../utils/convertData';
-import { useFilterData } from '../hooks/useFilterData';
-import { useMemo } from 'react';
 
 
 export default function Filter() {

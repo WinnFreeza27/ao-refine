@@ -14,7 +14,7 @@ export default function ListItem() {
     const data = useData((state) => state.data)
     const filter = useFiltering((state) => state.filter)
     const searchQuery = useSearchQuery((state) => state.searchQuery)
-    console.log(searchQuery)
+    
     const filteredData  = filterAndSearch(data, filter, searchQuery)
     const updateSelected = useSelectedItem((state) => state.updateSelected)
     const updateSelectedData = useSelectedItem((state) => state.updateSelectedData)
@@ -23,7 +23,6 @@ export default function ListItem() {
         updateSelectedData(itemData)
         updateSelected(id)
     }
-    
     const images = filteredData?.map((item) => {
         const imageUrl = item["resource-items"].ItemsImageUrl;
         return {
@@ -36,7 +35,7 @@ export default function ListItem() {
     // console.log(filteredData)
     return (
     <>
-        <div className="grid grid-cols-3 gap-3 items-center justify-start mt-5 p-3 min-[430px]:grid-cols-4 sm:grid-cols-6 md:grid-cols-8 lg:flex lg:flex-wrap lg:px-3 overflow-hidden -z-10">
+        <div className="grid grid-cols-3 gap-3 mx-auto 2xl:max-w-[90%] items-center justify-start mt-3 xl:mt-0 p-3 min-[430px]:grid-cols-4 sm:grid-cols-6 md:grid-cols-8 lg:grid-cols-10 xl:grid-cols-12 lg:px-3 overflow-hidden -z-10">
         {filteredData?.length > 0 ? 
             <ImageGallery images={images} />
            : null

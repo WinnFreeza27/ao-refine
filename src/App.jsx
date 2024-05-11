@@ -6,6 +6,9 @@ import fetchData from './hooks/useFetch'
 import { useData } from './hooks/useData'
 import convertData from './utils/convertData'
 import Refineinput from './component/refineInput'
+import CalculationDetail from './component/calculationDetail'
+import LoadingCircle from './component/loadingCircle'
+
 
 
 function App() {
@@ -28,6 +31,8 @@ function App() {
         <Searchlogo />
         <ListItem />
         <Refineinput />
+        <CalculationDetail />
+       
       </div>
   )
 }
