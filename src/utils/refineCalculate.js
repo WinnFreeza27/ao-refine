@@ -8,7 +8,8 @@ export default function refineCalculate(itemPerCraft, target, itemsNeed, returnR
       const totalNeedWithRr = Math.round(totalNeed - (totalNeed * parseFloat(percentage)))
       return {[itemName]: totalNeedWithRr}
     })
-    
+  
     const result = Object.assign({}, ...refinedItems)
+    
     return result
 }
