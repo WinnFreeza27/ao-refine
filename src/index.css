@@ -47,7 +47,7 @@
         @apply mb-3 fixed top-2 lg:top-10 left-1/2 text-white -translate-x-1/2 z-20 w-[95%] lg:w-max bg-bg-transparent border border-bd-grey p-2 rounded-lg overflow-auto
     }
     .refine-box{
-        max-height: calc(100vh - 20px)
+        max-height: calc(80vh - 20px)
     }
     input[name="recipe-radio"]:checked + label{
         @apply bg-bd-grey
