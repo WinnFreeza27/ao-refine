@@ -53,10 +53,14 @@ export default function Refineinput() {
     return(
         <>
             <Blackoverlay />
+            
+            <div className="relative w-full h-full">
             <div className="refine-box">
-            <svg onClick={() => removeSelected()} className="absolute top-0 left-0 w-10 cursor-pointer" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" strokeWidth="0"></g><g id="SVGRepo_tracerCarrier" strokeLinecap="round" strokeLinejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M16 8L8 16M8 8L16 16" stroke="#FFFFFF" strokeWidth="2" strokeLinecap="round"></path> </g></svg>
+            <div className="grid grid-cols-3 items-center justify-items-start w-full">
+            <svg onClick={() => removeSelected()} className="justify-self-start w-10 cursor-pointer" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" strokeWidth="0"></g><g id="SVGRepo_tracerCarrier" strokeLinecap="round" strokeLinejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M16 8L8 16M8 8L16 16" stroke="#FFFFFF" strokeWidth="2" strokeLinecap="round"></path> </g></svg>
                <Title />
-                <div className="flex flex-col w-full mt-4 gap-3 sm:p-3 md:grid md:grid-cols-2 md:gap-x-24 lg:auto-cols-max">
+            </div>
+                <div className="flex flex-col w-full gap-3 sm:p-3 md:grid md:grid-cols-2 md:gap-x-24 lg:auto-cols-max">
                     <div className="flex flex-col">
                     <Imageform url={selectedData["resource-items"].ItemsImageUrl} text={"Quantity"}/>
                         <div className="max-w-[20ch] text-sm">
@@ -90,13 +94,14 @@ export default function Refineinput() {
                     </div>
                 </div>
             </div>
+            </div>
         </>
     )
 } 
 
 function Title() {
     return (
-        <div className="flex items-center justify-center textn-center w-full pl-8">
+        <div className="flex items-center w-full max-[400px]:-ml-6 col-span-2">
             <h1 className="font-bold">Adamantium steel bar</h1>
         </div>
     )
