@@ -1,9 +1,5 @@
 import { useState } from 'react';
 import { useFiltering } from '../hooks/useFiltering';
-import { useData } from '../hooks/useData';
-import filterFn from '../utils/filterFn';
-import convertData from '../utils/convertData';
-import { useFilterData } from '../hooks/useFilterData';
 
 
 export default function Filter() {
@@ -13,18 +9,12 @@ export default function Filter() {
         EnchantmentLevel:["all","0","1","2","3","4"]
     }
     const [activeFilter, setActiveFilter] = useState(null)
-    
-    
-    const updateFilterData = useFilterData((state) => state.updateFilterData)
     const filter = useFiltering((state) => state.filter)
     const updateFilter = useFiltering((state) => state.updateFilter)
-    
     //handle the filter checkbox change
     const handleActiveFilter = (filter) => {
         setActiveFilter(activeFilter === filter ? "all" : filter)
     }
-    
-   
     const handleFilter = (data) => {
         updateFilter(data)
         setActiveFilter(null)

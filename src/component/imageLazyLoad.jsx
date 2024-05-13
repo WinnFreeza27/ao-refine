@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import LoadingCircle from './loadingCircle';
 
 const ImageGallery = ({ images }) => {
   const [loading, setLoading] = useState(true);
@@ -23,12 +24,12 @@ const ImageGallery = ({ images }) => {
 
   return (
     <>
-      {loading && <div>Loading...</div>}
+      {loading && <LoadingCircle/>}
       {!loading && (
         <>
           {images.map((image, index) => (
-            <div className='item-card' key={index}>
-            <img  src={image.src} alt={image.alt} className='"w-full h-full' id={image.id} onClick={image.onClick}/>
+            <div className='item-card w-full h-full' key={index}>
+            <img  src={image.src} alt={image.alt} className='w-full h-full' id={image.id} onClick={image.onClick}/>
             </div>
           ))}
           </>

@@ -1,19 +1,25 @@
 export default function convertData(data) {
     const joinedItem = {}
     const join = data.map((item) => {
+        
         const sorted = sortedItems(item["craft-resource"])
+        const AmountCrafted = item.AmountCrafted
+        const craftRes = sorted.map((sortedRes) => {
+            return {...sortedRes, AmountCrafted}
+        })
         if(!joinedItem[item.ItemsName]) {
-            joinedItem[item.ItemsName] = {...item, "craft-resource": sorted};
+            joinedItem[item.ItemsName] = {...item, "craft-resource": craftRes};
         } else {
-            joinedItem[item.ItemsName]["craft-resource"].push(...sorted)
+            joinedItem[item.ItemsName]["craft-resource"].push(...craftRes)
         }
     })
     const rawData = Object.values(joinedItem)
+    
     const resourceConvert = craftResourceToObj(rawData)
+    
     const sortResource = resourceConvert.map((item) => {
         const res = item["craft-resource"].sort((a,b) => {
             if(a[1] !== undefined && b[1] !== undefined) {
-                // console.log(`${a[1].ItemsName} => ${b[1].ItemsName}`)
                 return a[1].ItemsName.localeCompare(b[1].ItemsName)
               
             }
@@ -51,8 +57,6 @@ function craftResourceToObj(data) {
 }
 
 function sortedItems(data) {
-    const sorted = data.sort((a,b) => {
-        return a.ItemsName > b.ItemsName
-    })
-    return sorted
+    const sorted = data.sort((a, b) => a.ItemsName.localeCompare(b.ItemsName));
+    return sorted;
 }

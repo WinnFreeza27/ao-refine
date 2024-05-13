@@ -14,7 +14,11 @@ export default {
         "bg-purple-dark" : "#0E0B2E",
         "bg-transparent" : "#0A0A0A",
         "bd-grey" : "#252525",
-        "cyanide" : "#2FFFB4"
+        "cyanide" : "#2FFFB4",
+        "bg-greyish-transparent" : "#0F0F0F",
+        "salmonize" : "#ED8787",
+        "greenize" : "#82F28D",
+        "bluenize" : "#87C8ED"
       },
     },
   },
