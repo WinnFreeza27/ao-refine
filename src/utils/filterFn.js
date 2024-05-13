@@ -3,9 +3,6 @@ export default function filterFn (data, filterRules) {
         
         for (let key in filterRules) {
             let value = filterRules[key].toUpperCase()
-            if(key == "EnchantmentLevel" && value == 0) {
-                value = null
-            }
             if(value == "ALL") {
                 //Skip the loop on this key and move to the next key
                 continue;
