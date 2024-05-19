@@ -27,7 +27,7 @@ function FormRefine({ percentage, text, id, register ,errors, readOnly, readOnly
 
     return(
         <>
-        <label className="inline-flex justify-start flex-col gap-1s" htmlFor={id}>
+        <label className="inline-flex justify-center flex-col gap-1s" htmlFor={id}>
         <span className="text-xs">{additionalText}<span className="text-cyanide">{highlightedText}</span></span>
         <span className="inline-flex gap-2 items-center group w-max relative">{text}
             {tooltipText?.trim() !== "" ? (

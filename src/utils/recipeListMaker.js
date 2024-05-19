@@ -12,7 +12,6 @@ export const recipeListMaker = (selectedData) => {
                     text:"Quantity",
                     id: "targetCraftQty",
                     tooltip: "",
-                    additionalText: "*Item will yld every craft ",
                     required:"Please fill out this field",
                 },
                 imageFormData: {
