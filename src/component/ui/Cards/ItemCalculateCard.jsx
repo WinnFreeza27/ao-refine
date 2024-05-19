@@ -10,7 +10,7 @@ import propTypes from "prop-types"
         itemNeed =  resData.itemNeed
         itemTotalSpend = parseInt(itemPrice * itemNeed)
     } else {
-        itemNeed = resData.targetQty
+        itemNeed = resData.targetCraftQty
         itemPrice = resData["sellprice-form"]
         const tax = parseFloat(resData["taxcost-form"])
         const grossProfit = parseInt(itemPrice * itemNeed)

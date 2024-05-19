@@ -1,5 +1,4 @@
 export const refineCalculate = (itemPerCraft, target, itemsNeed, returnRate) => {
-
     const percentage = returnRate / 100;
     const refinedItems = itemsNeed.map((item) => {
       const itemName = item.itemName;

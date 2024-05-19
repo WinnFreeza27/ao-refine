@@ -6,8 +6,21 @@ export const recipeListMaker = (selectedData) => {
                 text: index + 1,
                 id: `recipe${index}-form`,
                 data: item,
-                amountCrafted: item[0].AmountCrafted,
-                selectedId: index
+                selectedId: index,
+                amountCrafted: selectedData.AmountCrafted,
+                targetCraftData: {
+                    text:"Quantity",
+                    id: "targetCraftQty",
+                    tooltip: "",
+                    additionalText: "*Item will yld every craft ",
+                    required:"Please fill out this field",
+                },
+                imageFormData: {
+                    text: "Buy Price",
+                    tooltip: "The buy price of this material item (per 1)",
+                    additionalText: "*Item need for every craft ",
+                    required:"Please fill out this field",
+                }
             }
         )
     })

@@ -1,8 +1,7 @@
 import propTypes from "prop-types"
 
 function VariationSelector({recipeSelected, handleRecipe, text, id, selectedId}) {
-    const selected = `recipe${recipeSelected}-form`
-    console.log(parseInt(text))
+    const selected = `recipe${recipeSelected}-form`;
     return(
         <>
             <input type="radio" className={`appearance-none`} id={id} name="recipe-radio" onChange={() => handleRecipe(selectedId)} checked={selected == id}/>

@@ -3,8 +3,8 @@ import {profitCalculate} from "../../../utils/profitCalculate"
 import propTypes from "prop-types"
 
 function CalculationSummary({summaryData}) {
-    const {items, refineCost, taxCost, sellPrice, targetQty} = summaryData
-    const result = profitCalculate(targetQty,items,sellPrice,taxCost, refineCost)
+    const {items, refineCost, taxCost, sellPrice, targetCraftQty} = summaryData
+    const result = profitCalculate(targetCraftQty,items,sellPrice,taxCost, refineCost)
     return(
         <>
             <div className="flex gap-3 justify-evenly pr-2">

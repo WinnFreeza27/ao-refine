@@ -25,7 +25,7 @@ export default function Refineinput() {
     const { selected, removeSelected, selectedData } = useSelectedItem();
     const { calculateData, updateCalculateData } = useCalculateData();
     const recipeList = recipeListMaker(selectedData);
-
+    
     const formMethods = useForm();
     const { setForms } = useFormData();
 
@@ -44,7 +44,7 @@ export default function Refineinput() {
     };
 
     const focusValue = watch("focuscost-form");
-    const qtyValue = watch("targetQty");
+    const qtyValue = watch("targetCraftQty");
 
     const resetForm = () => {
         reset();
@@ -76,7 +76,6 @@ export default function Refineinput() {
             document.body.classList.remove('overflow-hidden');
         }
     }, [selected]);
-
         return(
             <>
             {selected !== null && calculateData == null ? <>
@@ -90,14 +89,13 @@ export default function Refineinput() {
                 </div>
                 <div></div>
                 </div>
-                    <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col w-full gap-3 sm:p-3 md:grid md:grid-cols-2 md:gap-x-24 lg:auto-cols-max">
+                    <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col w-full gap-3 sm:p-3 md:grid md:grid-cols-2 md:gap-x-24 lg:max-w-3xl">
                         <div className="flex flex-col">
-                        <ImageForm url={selectedData["resource-items"].ItemsImageUrl}
-                        text={"Quantity"}
-                        register={register}
-                        errors={errors}
-                        id={"targetQty"}
-                         />
+                        <ImageForm
+                                imageUrl={selectedData["resource-items"].ItemsImageUrl} 
+                                formData={recipeList[recipeSelected].targetCraftData}
+                                register={register}
+                                errors={errors} />
                             <div className="max-w-[20ch] text-sm">
                                 <span>This item will yield <span className="text-cyanide">{recipeList[recipeSelected].amountCrafted}</span> for every craft</span>
                             </div>
@@ -114,28 +112,25 @@ export default function Refineinput() {
                             readOnly={item.readOnly}
                             required={item.required}
                             readOnlyText={qtyValue > 0 && focusValue > 0 ? formatNumber(qtyValue * focusValue) : "0"}
+                            tooltipText={item.tooltip}
                             />
                             </React.Fragment>
                             ) : null}
                             </div>
                         </div>
-                        <div className="flex flex-col gap-3">
-                        {recipeList.length > 0 ? recipeList[recipeSelected].data.map((res,index) => {
-                            const fieldName = `item${index + 1}price-form`;
-                            return (
-                                <React.Fragment key={index}>
-                                <ImageForm 
-                                url={res["resource-items"].ItemsImageUrl}
-                                text={"Buy price"} 
-                                additionalText={"*Item need for every craft "} 
-                                highlightedText={res.Count}
+                        <div className="flex flex-col gap-3 md:w-max">
+                        {recipeList[recipeSelected].data.length > 0 && recipeList[recipeSelected]?.imageFormData !== undefined ? 
+                            recipeList[recipeSelected].data.map((item,index) => {
+                                const id = `item${index + 1}price-form`
+                                return(
+                                <ImageForm key={index}
+                                imageUrl={item["resource-items"].ItemsImageUrl} 
+                                formData={{...recipeList[recipeSelected].imageFormData, id, highlightedText: item.Count}}
                                 register={register}
-                                id = {fieldName}
-                                errors = {errors}
-                                />
-                                </React.Fragment>
-                            )
-                        }) : null}
+                                errors={errors} />
+                                )
+                            })
+                        : null}
                         {recipeList.length > 1 ? (
                             <>
                             <div className="max-w-[30ch] pl-2">
