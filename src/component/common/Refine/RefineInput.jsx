@@ -58,16 +58,17 @@ export default function Refineinput() {
 
     useEffect(() => {
         const handleBackButton = () => {
-          console.log('Back button was pressed');
-          onClose();
+        if(selectedData !== null) {
+            onClose();
+        }
+          
         };
-    
         window.addEventListener('popstate', handleBackButton);
-
+        window.history.pushState(null, null, window.location.pathname);
         return () => {
           window.removeEventListener('popstate', handleBackButton);
         };
-      }, []);
+      }, [selected]);
 
     useEffect(() => {
         if (selected) {

@@ -31,16 +31,16 @@ export default function CalculationDetail() {
     }
     useEffect(() => {
         const handleBackButton = () => {
-          console.log('Back button was pressed');
           onBack();
         };
     
         window.addEventListener('popstate', handleBackButton);
+        window.history.pushState(null, null, window.location.pathname);
 
         return () => {
           window.removeEventListener('popstate', handleBackButton);
         };
-      }, []);
+      }, [calculateData]);
 
     return(
         <>
