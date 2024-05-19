@@ -1,13 +1,23 @@
-import ZodForm from "./zodForm"
+import ImageLazy from "../Image/ImageLazy.jsx"
+import Form from "./Form.jsx"
+import propTypes from "prop-types"
 
-export default function Imageform({url,text,additionalText,highlightedText, register, id, errors}) {
+function ImageForm({url,text,additionalText,highlightedText, register, id, errors}) {
+    const images = [
+        {
+            src: url,
+            alt: "",
+        }
+    ]
+            
     return (
         <div className="flex">
-                        <img className="w-28 h-28" src={url}/>
+                        {/* <img className="w-28 h-28" src={url}/> */}
+                        <ImageLazy images={images} style={{img: "w-28 h-28"}} imageOnly={true}/>
                                 <label className="flex flex-col justify-end gap-1" htmlFor={id}>
                                 <span className="text-xs">{additionalText}<span className="text-cyanide">{highlightedText}</span></span>
                                 <span>{text}</span>
-                                <ZodForm 
+                                <Form 
                                 inputType={"number"} 
                                 id = {id}
                                 noDefaultClass={false} 
@@ -24,3 +34,18 @@ export default function Imageform({url,text,additionalText,highlightedText, regi
                         </div>
     )
 }
+
+ImageForm.propTypes = {
+    url: propTypes.string,
+    text: propTypes.string,
+    additionalText: propTypes.string,
+    highlightedText: propTypes.oneOfType([
+        propTypes.string,
+        propTypes.number
+    ]),
+    register: propTypes.func,
+    id: propTypes.string,
+    errors: propTypes.object
+}
+
+export default ImageForm

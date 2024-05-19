@@ -1,4 +1,4 @@
-import filterFn from "./filterFn";
+import {filterFn} from "./filterFn";
 import { searchFunction } from "./searchFunction";
 
 export const filterAndSearch = (rawData, filterRules, searchQuery) => {

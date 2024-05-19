@@ -36,7 +36,6 @@
         -webkit-appearance: none; 
         margin: 0; 
     } 
-
     .remove-arrow { 
         -moz-appearance: textfield; 
     }
@@ -50,5 +49,7 @@
         @apply bg-bd-grey
     }
 }
+
+
 
 /* bg-gradient-to-br from-bg-purple from-10% to-bg-purple-dark to-90% */

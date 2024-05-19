@@ -1,23 +1,26 @@
-import { useState } from "react";
-import Form from "./form.jsx";
+import { useState, useMemo, useEffect } from "react";
 import { debounce } from "lodash";
-import { useFilterData } from "../hooks/useFilterData.js";
-import { useSearchQuery } from "../hooks/useSearchQuery.js";
-import { useEffect } from "react";
+import { useSearchQuery } from "../../../hooks/useSearchQuery.js";
+import Form from "../../ui/Forms/Form.jsx";
 
-export default function Searchbox() {
-    const searchQuery = useSearchQuery((state) => state.searchQuery)
+export default function SearchBox() {
+    const {searchQuery, updateSearchQuery} = useSearchQuery()
     const [title, setTitle] = useState(searchQuery)
-    const updateSearchQuery = useSearchQuery((state) => state.updateSearchQuery)
-    const debouncedUpdateSearchQuery = debounce(updateSearchQuery, 300);
+    
+    const debouncedUpdateSearchQuery = useMemo(() => debounce((value) => {
+        updateSearchQuery(value);
+    }, 1500), []); // Only recreate the debounced function if the delay duration changes
+    
     const handleChange = (value) => {
-        setTitle(value)
+        setTitle(value);
         debouncedUpdateSearchQuery(value);
     }
     
     useEffect(() => {
-        debouncedUpdateSearchQuery.cancel();
-    },[])
+        return () => {
+            debouncedUpdateSearchQuery.cancel(); // Cancel the debounced function on unmount
+        };
+    }, [debouncedUpdateSearchQuery]);
 
     return (
         <div className="relative h-12 col-span-4 sm:col-span-4 sm:mr-10 lg:col-start-5 lg:col-span-1 lg:mr-0 rounded-lg bg-bg-transparent border border-bd-grey flex items-center justify-between gap-3">

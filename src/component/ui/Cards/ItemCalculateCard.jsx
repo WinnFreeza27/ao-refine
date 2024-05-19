@@ -1,6 +1,7 @@
-import formatNumber from "../utils/formatNumber"
+import {formatNumber} from "../../../utils/formatNumber"
+import propTypes from "prop-types"
 
-export default function ItemCalculateCard({item, title, resData, targetItem}) {
+ function ItemCalculateCard({item, title, resData, targetItem}) {
     let itemPrice
     let itemNeed
     let itemTotalSpend
@@ -41,3 +42,12 @@ export default function ItemCalculateCard({item, title, resData, targetItem}) {
                         </div>
     )
 }
+
+ItemCalculateCard.propTypes = {
+    item: propTypes.object,
+    title: propTypes.object,
+    resData: propTypes.object,
+    targetItem: propTypes.bool
+}
+
+export default ItemCalculateCard

@@ -1,5 +1,5 @@
-import refineCalculate from "./refineCalculate"
-export default function convertCalculateData(data, formData) {
+import {refineCalculate} from "./refineCalculate"
+export const convertCalculateData = (data, formData) => {
     const {
         itemPerCraft,
         "returnrate-form": returnRate,

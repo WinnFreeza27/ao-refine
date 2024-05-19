@@ -1,13 +1,23 @@
-import axios from 'axios'
-import { createClient } from '@supabase/supabase-js'
+import supabase from '../api/supabase'
+import { useQuery } from 'react-query'
+import { useData } from './useData'
+import {convertData} from '../utils/convertData'
 
-const supabaseUrl = 'https://tssmmdquadbhkfqywkld.supabase.co'
-const supabaseKey = `${__SUPABASEKEY__}`
-const supabase = createClient(supabaseUrl, supabaseKey)
+export default function useFetchData() {
+    const {updateData} = useData()
+    return useQuery('repoData', () =>
+        fetchSupabase() ,{  
+          refetchOnWindowFocus: false,
+          onSuccess: (item) => {
+            const convert = convertData(item)
+            updateData(convert)
+          },
+        }
+      )
+}
 
-export default async function fetchData() {
-    try{
-        const {data, error} = await supabase
+async function fetchSupabase() {
+        const {data, error, status} = await supabase()
         .from('crafting-requirements')
         .select(`*, craft-resource(
         *,
@@ -20,14 +30,12 @@ export default async function fetchData() {
         )`)
         
         if(error) {
-            throw new Error(error)
+            throw status;
         }
         const sorted = data.sort((a,b) => {
             return a.ItemsName > b.ItemsName
         })
+
         return sorted
        
-    } catch(err) {
-        console.error(err)
-    }
 }

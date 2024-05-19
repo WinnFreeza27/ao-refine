@@ -1,7 +1,7 @@
-import ZodForm from "./zodForm"
+import Form from "./Form.jsx"
+import propTypes from "prop-types"
 
-
-export default function Forminput({ percentage, text, id, register ,errors, readOnly, readOnlyText, required}) {
+function FormRefine({ percentage, text, id, register ,errors, readOnly, readOnlyText, required}) {
 
     if(readOnly) {
         
@@ -26,7 +26,7 @@ export default function Forminput({ percentage, text, id, register ,errors, read
         {percentage == true 
                             ?
                             <div className="w-full lg:w-44 bg-bg-transparent flex input-form items-center p-1">
-                                <ZodForm 
+                                <Form 
                                 inputType={"text"} 
                                 id={id} 
                                 styleClass={"bg-bg-transparent remove-arrow py-1 px-2 w-full"} 
@@ -41,7 +41,7 @@ export default function Forminput({ percentage, text, id, register ,errors, read
                                 <span className="mr-3">%</span>
                             </div>
                         : 
-                            <ZodForm 
+                            <Form 
                             inputType={"text"} id={id} 
                             styleClass={"bg-bg-transparent remove-arrow py-2 px-3 w-full lg:w-44"} 
                             register = {register(id , {
@@ -56,3 +56,19 @@ export default function Forminput({ percentage, text, id, register ,errors, read
         </>
     )
 }
+
+FormRefine.propTypes = {
+    percentage: propTypes.bool,
+    text: propTypes.string,
+    register: propTypes.func,
+    id: propTypes.string,
+    readOnly: propTypes.bool,
+    errors: propTypes.object,
+    readOnlyText: propTypes.string,
+    required: propTypes.oneOfType([
+        propTypes.string,
+        propTypes.bool
+    ])
+}
+
+export default FormRefine

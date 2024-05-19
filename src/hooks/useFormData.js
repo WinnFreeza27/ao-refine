@@ -1,7 +1,8 @@
-import { create } from "zustand";
+import { storeFormData } from "../store/storeFormData"
 
+export const useFormData = () => {
+    const forms = storeFormData((state) => state.forms)
+    const setForms = storeFormData((state) => state.setForms)
 
-export const useFormData = create((set) => ({
-    forms: null,
-    setForm: (useForm) => set(() => ({forms: useForm}))
-}))
+    return {forms, setForms}
+}

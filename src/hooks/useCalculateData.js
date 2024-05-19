@@ -1,7 +1,9 @@
-import { create } from "zustand";
+import { storeCalculateData } from "../store/storeCalculateData"
 
-export const useCalculateData = create((set) => ({
-    calculateData: null,
-    updateCalculateData: (newData) => set(() => ({calculateData: newData})),
-    removeCalculateData: () => set(() => ({calculateData: null}))
-}))
+export const useCalculateData = () => {
+    const calculateData = storeCalculateData((state) => state.calculateData)
+    const updateCalculateData = storeCalculateData((state) => state.updateCalculateData)
+    const removeCalculateData = storeCalculateData((state) => state.removeCalculateData)
+
+    return {calculateData, updateCalculateData, removeCalculateData}
+}

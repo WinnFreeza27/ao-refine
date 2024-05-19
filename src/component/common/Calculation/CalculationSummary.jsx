@@ -1,7 +1,8 @@
-import formatNumber from "../utils/formatNumber"
-import profitCalculate from "../utils/profitCalculate"
+import {formatNumber} from "../../../utils/formatNumber"
+import {profitCalculate} from "../../../utils/profitCalculate"
+import propTypes from "prop-types"
 
-export default function CalculationSummary({summaryData}) {
+function CalculationSummary({summaryData}) {
     const {items, refineCost, taxCost, sellPrice, targetQty} = summaryData
     const result = profitCalculate(targetQty,items,sellPrice,taxCost, refineCost)
     return(
@@ -29,3 +30,9 @@ export default function CalculationSummary({summaryData}) {
         </>
     )
 }
+
+CalculationSummary.propTypes = {
+    summaryData: propTypes.object.isRequired
+}
+
+export default CalculationSummary

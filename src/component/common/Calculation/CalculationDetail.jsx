@@ -1,17 +1,17 @@
-import { useCalculateData } from "../hooks/useCalculateData"
-import { useSelectedItem } from "../hooks/useSelectedItem"
-import ItemCalculateCard from "./itemCalculateCard"
-import Blackoverlay from "./blackOverlay"
-import convertCalculateData from "../utils/convertCalculateData"
-import CalculationSummary from "./calculationSummary"
-import { useFormData } from "../hooks/useFormData"
+import { useCalculateData } from "../../../hooks/useCalculateData"
+import { useSelectedItem } from "../../../hooks/useSelectedItem"
+import { useFormData } from "../../../hooks/useFormData"
+import {convertCalculateData} from "../../../utils/convertCalculateData"
+import ItemCalculateCard from "../../ui/Cards/ItemCalculateCard"
+import Blackoverlay from "../../ui/Overlay/blackOverlay"
+import CalculationSummary from "./CalculationSummary"
+import { useEffect } from "react"
+
 
 export default function CalculationDetail() {
-    const calculateData = useCalculateData((state) => state.calculateData)
-    const removeCalculateData = useCalculateData((state) => state.removeCalculateData)
-    const removeSelected = useSelectedItem((state) => state.removeSelected)
-    const removeSelectedData = useSelectedItem((state) => state.removeSelectedData)
-    const forms = useFormData((state) => state.forms)
+    const {calculateData, removeCalculateData} = useCalculateData()
+    const {removeSelected, removeSelectedData} = useSelectedItem()
+    const {forms} = useFormData()
 
     const onBack = () => {
         removeCalculateData()
@@ -28,11 +28,23 @@ export default function CalculationDetail() {
     let convertedData;
     if(calculateData) {
         convertedData = convertCalculateData(calculateData.data, calculateData.formData)
-        
     }
+    useEffect(() => {
+        const handleBackButton = () => {
+          console.log('Back button was pressed');
+          onBack();
+        };
+    
+        window.addEventListener('popstate', handleBackButton);
+
+        return () => {
+          window.removeEventListener('popstate', handleBackButton);
+        };
+      }, []);
+
     return(
         <>
-        {calculateData !== null ? 
+        {calculateData !== null && convertedData !== undefined || null ? 
             <>
                 <Blackoverlay />
                 <div className="refine-box text-sm sm:text-base sm:overflow-hidden md:w-[70%] md:p-4 2xl:w-[50%]">
@@ -44,7 +56,7 @@ export default function CalculationDetail() {
                         <svg onClick={() => onClose()} className="justify-self-start w-10 cursor-pointer" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" strokeWidth="0"></g><g id="SVGRepo_tracerCarrier" strokeLinecap="round" strokeLinejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M16 8L8 16M8 8L16 16" stroke="#FFFFFF" strokeWidth="2" strokeLinecap="round"></path> </g></svg>
                     </div> 
                     <div className="flex flex-col gap-3">
-                    {convertedData.data["craft-resource"].length > 0 ? convertedData.data["craft-resource"].map((res,index) => {
+                    {convertedData?.data["craft-resource"].length > 0 ? convertedData.data["craft-resource"].map((res,index) => {
                         return (
                        <ItemCalculateCard key={index} 
                         item={res["resource-items"]}

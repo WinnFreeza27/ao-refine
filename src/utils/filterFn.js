@@ -1,4 +1,4 @@
-export default function filterFn (data, filterRules) {
+export const filterFn =  (data, filterRules) => {
     const filtered = data.filter((item) => {
         
         for (let key in filterRules) {

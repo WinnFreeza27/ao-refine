@@ -8,6 +8,7 @@ export default defineConfig({
   plugins: [react()],
   define: {
     __SUPABASEKEY__: `"${process.env.SUPABASEKEY}"`,
+    __SUPABASEURL__: `"${process.env.SUPABASEURL}"`
   },
 })
 

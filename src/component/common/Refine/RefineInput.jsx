@@ -1,73 +1,81 @@
-import Blackoverlay from "./blackOverlay.jsx";
-import Forminput from "./formInput.jsx";
-import { useSelectedItem } from "../hooks/useSelectedItem";
+import React, { useEffect } from "react";
+import Blackoverlay from "../../ui/Overlay/blackOverlay.jsx";
+import FormRefine from "../../ui/Forms/FormRefine.jsx"
+import SubmitButton from "../../ui/Buttons/SubmitButton.jsx";
+import ImageForm from "../../ui/Forms/ImageForm.jsx";
+import VariationSelector from "../../ui/Forms/VariationSelector.jsx";
+import { useSelectedItem } from "../../../hooks/useSelectedItem.js";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
-import React from "react";
-import Submitbutton from "./submitButton.jsx";
-import Imageform from "./imageForm.jsx";
-import Recipeinput from "./recipeInput.jsx";
-import { formList } from "../dummyDatas/formList.js";
-import { useCalculateData } from "../hooks/useCalculateData.js";
-import formatNumber from "../utils/formatNumber.js";
-import { useFormData } from "../hooks/useFormData.js";
-import { useEffect } from "react";
+import { useCalculateData } from "../../../hooks/useCalculateData.js";
+import { useFormData } from "../../../hooks/useFormData.js";
+import { formList } from "./storage.js";
+import { recipeListMaker } from "../../../utils/recipeListMaker.js";
+import { formatNumber } from "../../../utils/formatNumber.js";
+
 
 
 export default function Refineinput() {
-    const [recipeSelected, setRecipeSelected] = useState(0)
-    
-    const recipeList = []
-    const handleRecipe = (id) => {
-        setRecipeSelected(id)
-    }
-    const selected = useSelectedItem((state) => state.selected)
-    const removeSelected = useSelectedItem((state) => state.removeSelected)
-    const selectedData = useSelectedItem((state) => state.selectedData)
-    const calculateData = useCalculateData((state) => state.calculateData)
-    const updateCalculateData = useCalculateData((state) => state.updateCalculateData)
-    
-    selectedData["craft-resource"]?.map((item,index) => {
-        recipeList.push(
-            {
-                text: index,
-                id: `recipe${index}-form`,
-                data: item,
-                amountCrafted: item[0].AmountCrafted
-            }
-        )
-    })
-    
-    const formMethods = useForm();
-    const setForm = useFormData((state) => state.setForm)
-    
-    useEffect(() => {
-        setForm(formMethods)
-    },[])
-    const forms =  useFormData((state) => state.forms)
+    const [recipeSelected, setRecipeSelected] = useState(0);
 
-    if (forms !== null) {
-        const { register, handleSubmit, formState: { errors }, watch, reset } = forms;
-        const onSubmit = (data) => {
-            const recipeData = recipeList[recipeSelected].data
-            updateCalculateData({formData: {...data, itemPerCraft: recipeList[recipeSelected].amountCrafted}, data: {...selectedData, "craft-resource": recipeData}})
-        }
-        const focusValue = watch("focuscost-form")
-        const qtyValue = watch("targetQty")
-        const resetForm = () => {
-            reset()
-        }
-        const onClose = () => {
-            setRecipeSelected(0)
-            removeSelected()
-            resetForm()
-        }
-        if(selected) {
+    const handleRecipe = (id) => {
+        setRecipeSelected(id);
+    };
+
+    const { selected, removeSelected, selectedData } = useSelectedItem();
+    const { calculateData, updateCalculateData } = useCalculateData();
+    const recipeList = recipeListMaker(selectedData);
+
+    const formMethods = useForm();
+    const { setForms } = useFormData();
+
+    useEffect(() => {
+        setForms(formMethods);
+    }, [formMethods, setForms]);
+
+    const { register, handleSubmit, formState: { errors }, watch, reset } = formMethods;
+
+    const onSubmit = (data) => {
+        const recipeData = recipeList[recipeSelected].data;
+        updateCalculateData({
+            formData: { ...data, itemPerCraft: recipeList[recipeSelected].amountCrafted },
+            data: { ...selectedData, "craft-resource": recipeData }
+        });
+    };
+
+    const focusValue = watch("focuscost-form");
+    const qtyValue = watch("targetQty");
+
+    const resetForm = () => {
+        reset();
+    };
+
+    const onClose = () => {
+        setRecipeSelected(0);
+        removeSelected();
+        resetForm();
+    };
+
+    useEffect(() => {
+        const handleBackButton = () => {
+          console.log('Back button was pressed');
+          onClose();
+        };
+    
+        window.addEventListener('popstate', handleBackButton);
+
+        return () => {
+          window.removeEventListener('popstate', handleBackButton);
+        };
+      }, []);
+
+    useEffect(() => {
+        if (selected) {
             document.body.classList.add('overflow-hidden');
-            
         } else {
             document.body.classList.remove('overflow-hidden');
         }
+    }, [selected]);
 
         return(
             <>
@@ -78,13 +86,13 @@ export default function Refineinput() {
                 <div className="flex items-center justify-between w-full mb-4">
                 <svg onClick={() => onClose()} className="justify-self-start w-10 cursor-pointer" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" strokeWidth="0"></g><g id="SVGRepo_tracerCarrier" strokeLinecap="round" strokeLinejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M16 8L8 16M8 8L16 16" stroke="#FFFFFF" strokeWidth="2" strokeLinecap="round"></path> </g></svg>
                 <div className="flex items-center">
-                <h1 className="font-bold text-xl">{selectedData["resource-items"].ItemsLocalizedName}</h1>
+                <h1 className="font-bold text-lg md:text-xl">{selectedData["resource-items"].ItemsLocalizedName}</h1>
                 </div>
                 <div></div>
                 </div>
                     <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col w-full gap-3 sm:p-3 md:grid md:grid-cols-2 md:gap-x-24 lg:auto-cols-max">
                         <div className="flex flex-col">
-                        <Imageform url={selectedData["resource-items"].ItemsImageUrl}
+                        <ImageForm url={selectedData["resource-items"].ItemsImageUrl}
                         text={"Quantity"}
                         register={register}
                         errors={errors}
@@ -96,7 +104,7 @@ export default function Refineinput() {
                             <div className="grid grid-cols-2 mt-3 gap-y-1 gap-x-3 min-[420px]:grid-cols-3 md:grid-cols-2">
                             {formList.length > 0 ? formList.map((item,index) => 
                             <React.Fragment key={index}>
-                            <Forminput 
+                            <FormRefine 
                             key={index}
                             register={register}
                             percentage={item.percentage} 
@@ -105,7 +113,7 @@ export default function Refineinput() {
                             errors = {errors}
                             readOnly={item.readOnly}
                             required={item.required}
-                            readOnlyText={qtyValue > 0 && focusValue > 0 ? formatNumber(qtyValue * focusValue) : 0}
+                            readOnlyText={qtyValue > 0 && focusValue > 0 ? formatNumber(qtyValue * focusValue) : "0"}
                             />
                             </React.Fragment>
                             ) : null}
@@ -116,7 +124,7 @@ export default function Refineinput() {
                             const fieldName = `item${index + 1}price-form`;
                             return (
                                 <React.Fragment key={index}>
-                                <Imageform 
+                                <ImageForm 
                                 url={res["resource-items"].ItemsImageUrl}
                                 text={"Buy price"} 
                                 additionalText={"*Item need for every craft "} 
@@ -135,17 +143,17 @@ export default function Refineinput() {
                             </div>
                             <div className="flex items-center gap-2">
                             {recipeList.length > 0 ? recipeList.map((item,index) => 
-                            <Recipeinput 
+                            <VariationSelector 
                             key={index} 
                             recipeSelected={recipeSelected} 
-                            handleRecipe={handleRecipe} 
-                            text={item.text} 
+                            handleRecipe={handleRecipe}
+                            text={`${item.text}`}
+                            selectedId={item.selectedId}
                             id={item.id}/>) : null}
                                 </div>
                                 </>
                         ): null}
-                           
-                            <Submitbutton />
+                            <SubmitButton />
                         </div>
                     </form>
             </div>
@@ -156,12 +164,6 @@ export default function Refineinput() {
             </>
         )
     }
-
-    
-return (
-    <div>Use Form is Null</div>
-)
-}
 
 
 

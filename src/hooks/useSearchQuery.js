@@ -1,7 +1,8 @@
+import { storeSearchQuery } from "../store/storeSearchQuery"
 
-import {create} from "zustand";
-
-export const useSearchQuery = create((set) => ({
-    searchQuery: "",
-    updateSearchQuery : (newData) => set((prev) => ({searchQuery: newData}))
-}))
+export const useSearchQuery = () => {
+    const searchQuery = storeSearchQuery((state) => state.searchQuery)
+    const updateSearchQuery = storeSearchQuery((state) => state.updateSearchQuery)
+    
+    return {searchQuery, updateSearchQuery}
+}

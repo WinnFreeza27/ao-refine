@@ -1,4 +1,4 @@
-export default function profitCalculate(targetQty, items, targetPrice, taxCost, refineCost) {
+export const profitCalculate = (targetQty, items, targetPrice, taxCost, refineCost) => {
     let storage = []
     items.map((item) => {
       const itemNeed = item.itemNeed

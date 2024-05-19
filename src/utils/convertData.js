@@ -1,4 +1,4 @@
-export default function convertData(data) {
+export const convertData = (data) => {
     const joinedItem = {}
     const join = data.map((item) => {
         

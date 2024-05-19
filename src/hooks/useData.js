@@ -1,6 +1,8 @@
-import {create} from "zustand"
+import { storeData } from "../store/storeData"
 
-export const useData = create((set) => ({
-    data: [],
-    updateData: (newData) => set((prev) => ({data: [...prev.data,...newData]}))
-}))
+export const useData = () => {
+    const data = storeData((state) => state.data)
+    const updateData = storeData((state) => state.updateData)
+
+    return {data, updateData}
+}
