@@ -2,7 +2,7 @@ import Form from "./Form.jsx"
 import propTypes from "prop-types"
 
 function FormRefine({ percentage, text, id, register ,errors, readOnly, readOnlyText, required, tooltipText, additionalText, highlightedText, formClass}) {
-
+    
     if(readOnly) {
         
         return (
@@ -69,7 +69,7 @@ function FormRefine({ percentage, text, id, register ,errors, readOnly, readOnly
                                         message: 'Invalid number format',
                                     }})}/>
         }   
-        {errors[id] && <p className="text-[10px] text-rose-500">{errors[id].message}</p>}
+        {errors[id] && <p className="text-[12px] sm:text-sm text-rose-500">{errors[id].message}</p>}
         </label> 
         </>
     )

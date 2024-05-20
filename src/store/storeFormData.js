@@ -1,5 +1,6 @@
 import { create } from "zustand";
 export const storeFormData = create((set) => ({
-    forms: null,
-    setForms: (useForm) => set(() => ({forms: useForm}))
+    formData: {},
+    setFormData: (newData) => set((state) => ({formData: {...state.formData, ...newData}})),
+    resetFormData: () => set({formData: {}})
 }))

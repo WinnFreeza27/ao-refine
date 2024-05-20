@@ -5,21 +5,23 @@ import {convertCalculateData} from "../../../utils/convertCalculateData"
 import ItemCalculateCard from "../../ui/Cards/ItemCalculateCard"
 import Blackoverlay from "../../ui/Overlay/blackOverlay"
 import CalculationSummary from "./CalculationSummary"
-import { useEffect } from "react"
+import { useNavigate } from "react-router-dom"
 
 
 export default function CalculationDetail() {
     const {calculateData, removeCalculateData} = useCalculateData()
     const {removeSelected, removeSelectedData} = useSelectedItem()
-    const {forms} = useFormData()
+    const {formData, resetFormData} = useFormData()
+    const navigate = useNavigate();
 
     const onBack = () => {
         removeCalculateData()
+        navigate("/input")
     }
     const onClose = () => {
-        if(forms) {
-            const {reset} = forms
-            reset()
+        if(formData) {
+            resetFormData()
+            navigate("/")
         }
         removeCalculateData()
         removeSelected()
@@ -29,18 +31,6 @@ export default function CalculationDetail() {
     if(calculateData) {
         convertedData = convertCalculateData(calculateData.data, calculateData.formData)
     }
-    useEffect(() => {
-        const handleBackButton = () => {
-          onBack();
-        };
-    
-        window.addEventListener('popstate', handleBackButton);
-        window.history.pushState(null, null, window.location.pathname);
-
-        return () => {
-          window.removeEventListener('popstate', handleBackButton);
-        };
-      }, [calculateData]);
 
     return(
         <>

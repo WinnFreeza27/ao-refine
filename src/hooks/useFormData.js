@@ -1,8 +1,8 @@
 import { storeFormData } from "../store/storeFormData"
 
 export const useFormData = () => {
-    const forms = storeFormData((state) => state.forms)
-    const setForms = storeFormData((state) => state.setForms)
-
-    return {forms, setForms}
+    const formData = storeFormData((state) => state.formData)
+    const setFormData = storeFormData((state) => state.setFormData)
+    const resetFormData = storeFormData((state) => state.resetFormData)
+    return {formData, setFormData, resetFormData}
 }

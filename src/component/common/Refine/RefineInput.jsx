@@ -12,12 +12,12 @@ import { useFormData } from "../../../hooks/useFormData.js";
 import { formList } from "./storage.js";
 import { recipeListMaker } from "../../../utils/recipeListMaker.js";
 import { formatNumber } from "../../../utils/formatNumber.js";
-
+import { useNavigate } from "react-router-dom";
 
 
 export default function Refineinput() {
     const [recipeSelected, setRecipeSelected] = useState(0);
-
+    const navigate = useNavigate()
     const handleRecipe = (id) => {
         setRecipeSelected(id);
     };
@@ -27,13 +27,24 @@ export default function Refineinput() {
     const recipeList = recipeListMaker(selectedData);
     
     const formMethods = useForm();
-    const { setForms } = useFormData();
+    const { formData, setFormData, resetFormData } = useFormData();
+    const { register, handleSubmit, formState: { errors }, watch, setValue } = formMethods;
 
-    useEffect(() => {
-        setForms(formMethods);
-    }, [formMethods, setForms]);
+    // Populate form with existing formData if any
+  useEffect(() => {
+    Object.keys(formData).forEach(key => {
+      setValue(key, formData[key]);
+    });
+  }, [formData, setValue]);
 
-    const { register, handleSubmit, formState: { errors }, watch, reset } = formMethods;
+  // Watch for changes in form values and update Zustand store
+  const formValues = watch();
+  useEffect(() => {
+    // Only update if formValues have actually changed
+    if (JSON.stringify(formValues) !== JSON.stringify(formData)) {
+      setFormData(formValues);
+    }
+  }, [formValues, formData, setFormData]);
 
     const onSubmit = (data) => {
         const recipeData = recipeList[recipeSelected].data;
@@ -41,34 +52,22 @@ export default function Refineinput() {
             formData: { ...data, itemPerCraft: recipeList[recipeSelected].amountCrafted },
             data: { ...selectedData, "craft-resource": recipeData }
         });
+        navigate("/result")
     };
 
     const focusValue = watch("focuscost-form");
     const qtyValue = watch("targetCraftQty");
 
     const resetForm = () => {
-        reset();
+        resetFormData()
     };
 
     const onClose = () => {
         setRecipeSelected(0);
         removeSelected();
         resetForm();
+        navigate("/")
     };
-
-    useEffect(() => {
-        const handleBackButton = () => {
-        if(selectedData !== null) {
-            onClose();
-        }
-          
-        };
-        window.addEventListener('popstate', handleBackButton);
-        window.history.pushState(null, null, window.location.pathname);
-        return () => {
-          window.removeEventListener('popstate', handleBackButton);
-        };
-      }, [selected]);
 
     useEffect(() => {
         if (selected) {
@@ -79,7 +78,8 @@ export default function Refineinput() {
     }, [selected]);
         return(
             <>
-            {selected !== null && calculateData == null ? <>
+            {selected !== null && calculateData == null ? 
+            <>
                 <Blackoverlay />
                 <div className="relative w-full h-full">
                 <div className="refine-box">

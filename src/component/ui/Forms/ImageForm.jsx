@@ -28,7 +28,6 @@ function ImageForm({imageUrl, formData, register, errors}) {
                 highlightedText={highlightedText}
                 formClass={"remove-arrow py-2 px-3 w-36"}
                 />
-                {errors[formData.id] && <p className="-mt-4 text-xs text-rose-500">{errors[formData.id].message}</p>}
                 </>
             ) : null}         
        </div>
