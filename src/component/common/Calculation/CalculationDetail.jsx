@@ -6,6 +6,7 @@ import ItemCalculateCard from "../../ui/Cards/ItemCalculateCard"
 import Blackoverlay from "../../ui/Overlay/blackOverlay"
 import CalculationSummary from "./CalculationSummary"
 import { useNavigate } from "react-router-dom"
+import { useEffect } from "react"
 
 
 export default function CalculationDetail() {
@@ -16,7 +17,7 @@ export default function CalculationDetail() {
 
     const onBack = () => {
         removeCalculateData()
-        navigate("/input")
+        navigate("/")
     }
     const onClose = () => {
         if(formData) {
@@ -27,6 +28,26 @@ export default function CalculationDetail() {
         removeSelected()
         removeSelectedData()
     }
+
+    useEffect(() => {
+      const handleBackNavigation = () => {
+        // Execute your function here
+        onBack()
+        // You can perform any action you want when the back button is pressed
+      };
+  
+      const handlePopstate = (event) => {
+        if (event.type === 'popstate') {
+          handleBackNavigation();
+        }
+      };
+  
+      window.addEventListener('popstate', handlePopstate);
+  
+      return () => {
+        window.removeEventListener('popstate', handlePopstate);
+      };
+    }, [calculateData]);
     let convertedData;
     if(calculateData) {
         convertedData = convertCalculateData(calculateData.data, calculateData.formData)
