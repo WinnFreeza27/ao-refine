@@ -4,7 +4,7 @@ export const formList = [
         text: "Sell price",
         id:"sellprice-form",
         readOnly: false,
-        required: "Please fill out this input",
+        required: "Can't be empty",
         tooltip: "The sell price of this crafted item (per 1)"
     },
     {
@@ -12,7 +12,7 @@ export const formList = [
         text: "Tax cost",
         id:"taxcost-form",
         readOnly: false,
-        required: "Please fill out this input",
+        required: "Can't be empty",
         tooltip: "The percentage of tax paid on the market for selling items. (e.g., 10 or 6.5)."
     },
     {
@@ -20,7 +20,7 @@ export const formList = [
         text: "Refine cost",
         id:"refinecost-form",
         readOnly: false,
-        required: "Please fill out this input",
+        required: "Can't be empty",
         tooltip: "The actual cost required to refine an item for each craft. (e.g., 100)."
     },
     {
@@ -28,7 +28,7 @@ export const formList = [
         text: "Return rate",
         id:"returnrate-form",
         readOnly: false,
-        required: "Please fill out this input",
+        required: "Can't be empty",
         tooltip: "The percentage of resources returned after crafting an item. (e.g., 36.7)."
     },
     {

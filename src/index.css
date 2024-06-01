@@ -5,7 +5,7 @@
 
 @layer components{
     .filterHead{
-        @apply flex flex-col gap-0 justify-center text-center items-center bg-bg-transparent text-white rounded-lg w-full absolute transition-all ease-in-out duration-200 border border-bd-grey
+        @apply flex flex-col gap-0 justify-center text-center items-center bg-bg-transparent text-white rounded-lg w-full absolute transition-all ease-in-out duration-200 border border-bd-grey z-[200]
     }
     .filterShow{
         @apply top-12 sm:top-16
@@ -17,16 +17,16 @@
         @apply cursor-pointer px-5 py-3 inline-block w-full hover:bg-bd-grey peer-checked:bg-bd-grey
     }
     .filterLabel{
-        @apply flex gap-[0.1rem] items-center p-3 rounded-lg border border-bd-grey bg-bg-transparent w-full justify-center text-center hover:border-white/80
+        @apply flex gap-2 h-full items-center w-full justify-between text-center hover:border-white/80 pl-2 md:pl-4
     }
     .filterBoxWrapper{
-        @apply flex mt-4 lg:mt-0 text-white text-sm sm:text-base sm:pr-10 col-start-2 col-span-5 gap-3 justify-self-start justify-around w-full max-[430px]:col-start-1 max-[430px]:col-span-5 sm:justify-between md:justify-evenly lg:row-start-1 lg:col-start-2 lg:col-span-3
+        @apply flex mt-4 lg:mt-0 mb-4 text-white text-sm md:text-base sm:pr-10 gap-3 justify-start flex-wrap
     }
     .item-card{
         box-shadow: rgba(0,0,0,0.8),0 4px 6px rgba(0,0,0,.04);
     }
     .item-card{
-        @apply lg:w-28 lg:h-28 rounded-lg border border-bd-grey bg-bg-transparent cursor-pointer hover:border-white/80;
+        @apply h-28 w-28 rounded-lg border border-bd-grey bg-bg-transparent cursor-pointer hover:border-white/80;
     }
     .filter-span{
         @apply w-full bg-white text-black py-2 rounded-t-lg font-bold
@@ -43,7 +43,7 @@
         @apply bg-bg-transparent border border-bd-grey rounded-lg
     }
     .refine-box{
-        @apply mb-3 fixed top-2 lg:top-10 left-1/2 text-white -translate-x-1/2 z-20 w-[95%] lg:w-max bg-bg-transparent border border-bd-grey p-2 rounded-lg overflow-auto max-h-[84vh] sm:max-h-screen
+        @apply mb-3 mx-auto text-white w-[95%] overflow-auto font-jetbrains mt-5 min-h-[70vh]
     }
     input[name="recipe-radio"]:checked + label{
         @apply bg-bd-grey

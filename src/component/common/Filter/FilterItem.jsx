@@ -1,16 +1,18 @@
-export default function FilterItem({activeFilter,filter,renderList,handleActiveFilter, type, styleWidth}) {
+export default function FilterItem({activeFilter,filter,renderList,handleActiveFilter, type}) {
     return (
         <>
            <div className="relative">
-                <label htmlFor={type} className={`cursor-pointer inline-flex items-center justify-center text-center ${styleWidth}`}>
-                    <div className="filterLabel">{filter[type].charAt(0).toUpperCase() + filter[type].slice(1)}
+                <label htmlFor={type} className={`cursor-pointer flex items-center justify-center text-center h-10 rounded-lg border w-max border-bd-grey bg-bg-transparent hover:bg-black`}>
+                    <div className="filterLabel">
+                    <span>{type == "EnchantmentLevel" ? "Enchantment" : type.charAt(0).toUpperCase() + type.slice(1)}</span>
                     <input type="checkbox" id={type} onChange={() => handleActiveFilter(`${type}Filter`)} checked={activeFilter == `${type}Filter`} className="appearance-none"/>
-                        <div className="w-4 h-4 sm:w-5 sm:h-5">
-                            <svg className="w-5 h-5 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
-                            <path stroke="#FFFFFF" strokeLinecap="round" strokeWidth="2" d="M18.796 4H5.204a1 1 0 0 0-.753 1.659l5.302 6.058a1 1 0 0 1 .247.659v4.874a.5.5 0 0 0 .2.4l3 2.25a.5.5 0 0 0 .8-.4v-7.124a1 1 0 0 1 .247-.659l5.302-6.059c.566-.646.106-1.658-.753-1.658Z"/>
+                        <div className="h-full border-l border-bd-grey inline-flex items-center p-2">
+                            <svg className="w-5 h-5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="#ffffff"><g id="SVGRepo_bgCarrier" strokeWidth="0"></g><g id="SVGRepo_tracerCarrier" strokeLinecap="round" strokeLinejoin="round"></g><g id="SVGRepo_iconCarrier"> 
+                            <path fillRule="evenodd" clipRule="evenodd" d="M12.7071 14.7071C12.3166 15.0976 11.6834 15.0976 11.2929 14.7071L6.29289 9.70711C5.90237 9.31658 5.90237 8.68342 6.29289 8.29289C6.68342 7.90237 7.31658 7.90237 7.70711 8.29289L12 12.5858L16.2929 8.29289C16.6834 7.90237 17.3166 7.90237 17.7071 8.29289C18.0976 8.68342 18.0976 9.31658 17.7071 9.70711L12.7071 14.7071Z" fill="#ffffff"></path> </g>
                             </svg>
                         </div>
                     </div>
+                    <span className="text-xs pr-3">{filter[type]}</span>
                 </label>
                 <div className={`filterHead ${activeFilter == `${type}Filter` ? "filterShow" : "filterHide" }`}>
                 <span className="filter-span">{type == "EnchantmentLevel" ? "Enchantment" : type.charAt(0).toUpperCase() + type.slice(1)}</span>

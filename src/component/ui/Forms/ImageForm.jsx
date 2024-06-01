@@ -13,7 +13,7 @@ function ImageForm({imageUrl, formData, register, errors}) {
     ]
             
     return (
-        <div className="flex w-max">
+        <div className="flex w-max -ml-2 items-start md:w-80 xl:w-64">
             {formData !== undefined ? (
                 <>
                 <ImageLazy images={images} style={{img: "w-28 h-28"}} imageOnly={true}/>
@@ -26,7 +26,7 @@ function ImageForm({imageUrl, formData, register, errors}) {
                 tooltipText={tooltip}
                 additionalText={additionalText}
                 highlightedText={highlightedText}
-                formClass={"remove-arrow py-2 px-3 w-36"}
+                formClass={"remove-arrow py-2 px-3 w-36 md:w-full"}
                 />
                 </>
             ) : null}         

@@ -1,18 +1,19 @@
 export const filterFn =  (data, filterRules) => {
-    const filtered = data.filter((item) => {
-        
-        for (let key in filterRules) {
-            let value = filterRules[key].toUpperCase()
-            if(value == "ALL") {
-                //Skip the loop on this key and move to the next key
-                continue;
-            } else if(value != item[key]) {
-                //Returning false if the condition are met.
-                return false
-            }
-        }
-        //Returning true if the condition false are not met.
-        return true
-    })
-    return filtered
+    const { Categories, Tier, EnchantmentLevel } = filterRules;
+  const categoryData = data[Categories];
+
+  const result = [];
+
+  Object.values(categoryData).forEach(item => {
+    if (item.Tier === Tier && item.EnchantmentLevel === EnchantmentLevel) {
+      result.push(item);
+    }
+
+    item.Enchantments.forEach(enchantment => {
+      if (enchantment.Tier === Tier && enchantment.EnchantmentLevel === EnchantmentLevel) {
+        result.push(enchantment);
+      }
+    });
+  });
+  return result;
 }

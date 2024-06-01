@@ -1,38 +1,68 @@
 import { useSelectedItem } from "../../../hooks/useSelectedItem.js"
 import { useData } from "../../../hooks/useData.js"
-import { useFilterRules } from "../../../hooks/useFilterRules.js"
-import { useSearchQuery } from "../../../hooks/useSearchQuery.js"
-import {filterAndSearch} from "../../../utils/filterAndSearch.js"
 import ImageLazy from "../../ui/Image/ImageLazy.jsx"
+import { useFilterRules } from "../../../hooks/useFilterRules.js"
+import { useFilterList } from "../../../hooks/useFilterList.js"
+
+import { filterContentExtract } from "../../../utils/filterContentExtractor.js"
+import { useEffect } from "react"
 
 export default function ItemRefine() {
-   
     const {data} = useData()
-    const {filter} = useFilterRules()
-    const {searchQuery} = useSearchQuery()
-    
-    const filteredData  = filterAndSearch(data, filter, searchQuery)
-    const {updateSelected, updateSelectedData} = useSelectedItem()
 
+    const {filterList, updateFilterList} = useFilterList()
+
+    const {updateSelected, updateSelectedData} = useSelectedItem()
+    const {updateFilter} = useFilterRules()
      //handle the filter change
+
+
+    
     const handleClick = (id,itemData) => {
+        const {Categories, Tier, EnchantmentLevel} = itemData
+        updateFilter({Categories, Tier, EnchantmentLevel})
         updateSelectedData(itemData)
         updateSelected(id)
     }
-    const images = filteredData?.map((item) => {
-        const imageUrl = item["resource-items"].ItemsImageUrl;
-        return {
-            src: imageUrl,
-            alt: "",
-            id: item.ItemsName,
-            onClick: () => handleClick(item.ItemsName, item)
+    
+    useEffect(() => {
+
+        if(data) {
+            const result = filterContentExtract(data, ["Categories","Tier","EnchantmentLevel"])
+            if(result) updateFilterList(result)
         }
-    })
+    }, [])
+
+
+    let images = [];
+    if(filterList.Categories){
+        filterList.Categories.map((category) => {
+            const key = category.toUpperCase();
+    
+            //take the first element on the every category , first mean lowest tier.
+            const item = data[key][0]
+            const imageUrl = item["resource-items"].ItemsImageUrl;
+                images.push( {
+                    src: imageUrl,
+                    alt: "",
+                    id: item.ItemsName,
+                    onClick: () => handleClick(item.ItemsName, item)
+                })
+            
+        })
+    }
+    
     return (
     <>
-        <div className="grid grid-cols-3 gap-3 mx-auto 2xl:max-w-[90%] items-center justify-start mt-3 xl:mt-0 p-3 min-[430px]:grid-cols-4 sm:grid-cols-6 md:grid-cols-8 lg:grid-cols-10 xl:grid-cols-12 lg:px-3 overflow-hidden -z-10">
-        {filteredData?.length > 0 ? 
-            <ImageLazy images={images} style={{img: "w-full h-full", div: "item-card w-full h-full"}} imageOnly={false}/>
+     <div className="text-white inline-flex flex-col items-center justify-center w-full mt-4 gap-y-3">
+            <h1 className="font-bold text-lg sm:text-xl">Select the item you want to craft</h1>
+            <svg className="w-6 rotate-[270deg]" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" fill="#fdfdfd" stroke="#fdfdfd"><g id="SVGRepo_bgCarrier" strokeWidth="0"></g><g id="SVGRepo_tracerCarrier" strokeLinecap="round" strokeLinejoin="round"></g><g id="SVGRepo_iconCarrier"><path fill="#ffffff" d="M224 480h640a32 32 0 1 1 0 64H224a32 32 0 0 1 0-64z"></path>
+                    <path fill="#ffffff" d="m237.248 512 265.408 265.344a32 32 0 0 1-45.312 45.312l-288-288a32 32 0 0 1 0-45.312l288-288a32 32 0 1 1 45.312 45.312L237.248 512z"></path></g>
+                    </svg>
+        </div>
+        <div className="flex flex-row flex-wrap gap-3 justify-center w-full sm:w-[90%] mx-auto mt-3">
+        {images?.length > 0 ? 
+            <ImageLazy images={images} style={{img: "w-full h-full", div: "item-card"}} imageOnly={false}/>
            : null
             }
         </div>

@@ -5,7 +5,7 @@ export default {
     
     extend: {
       fontFamily: {
-        'poppins' : ["Poppins", "sans-serif"]
+        jetbrains: ['"JetBrains Mono"', 'monospace'],
       },
       colors: {
         "blue-primary" : "#535C91",

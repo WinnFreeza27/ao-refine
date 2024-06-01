@@ -1,6 +1,7 @@
 export const recipeListMaker = (selectedData) => {
     const recipeList = []
     selectedData["craft-resource"]?.map((item,index) => {
+        
         recipeList.push(
             {
                 text: index + 1,
@@ -17,7 +18,7 @@ export const recipeListMaker = (selectedData) => {
                 imageFormData: {
                     text: "Buy Price",
                     tooltip: "The buy price of this material item (per 1)",
-                    additionalText: "*Item need for every craft ",
+                    additionalText: "Need per craft ",
                     required:"Please fill out this field",
                 }
             }

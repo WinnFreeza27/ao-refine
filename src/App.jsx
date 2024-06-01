@@ -6,6 +6,7 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import RefineInputPage from './pages/Refine/RefineInputPage'
 import RefineCalculationPage from './pages/Refine/RefineCalculationPage'
 
+
 const router = createBrowserRouter([
   {
     path: "/",

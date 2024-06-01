@@ -1,21 +1,41 @@
 import { useState } from 'react';
 import { useFilterRules } from '../../../hooks/useFilterRules';
-import { filterList } from './storage';
 import { filterHeadList } from './storage';
 import FilterItem from './FilterItem';
+import { filterFn } from '../../../utils/filterFn';
+import { useSelectedItem } from '../../../hooks/useSelectedItem';
+import { useData } from '../../../hooks/useData';
+import { useEffect } from 'react';
+import { useFilterList } from '../../../hooks/useFilterList';
+import { getAvailableOptions } from '../../../utils/filterContentExtractor';
+
 
 export default function Filter() {
    
     const [activeFilter, setActiveFilter] = useState(null)
     const {filter, updateFilter} = useFilterRules()
+    const {updateSelected, updateSelectedData} = useSelectedItem()
+    const {data} = useData()
+    const {filterList, updateFilterList} = useFilterList()
     //handle the filter checkbox change
     const handleActiveFilter = (filter) => {
-        setActiveFilter(activeFilter === filter ? "all" : filter)
+        setActiveFilter((prev) => prev == filter ? null : filter)
     }
     const handleFilter = (data) => {
         updateFilter(data)
         setActiveFilter(null)
     }
+
+    useEffect(() => {
+        if(data && filter.Tier) {
+            const [filteredData] = filterFn(data, filter)
+            updateSelected(filteredData.ItemsName)
+            updateSelectedData(filteredData)
+            const availableOptions = getAvailableOptions(data, filter)
+            updateFilterList(availableOptions)
+        }
+    }, [filter])
+
     const renderList = Object.entries(filterList).reduce((acc, [key, value]) => {
         acc[key] = value.map((item) => {
             return (
@@ -33,7 +53,7 @@ export default function Filter() {
                   htmlFor={`${key}-${item}`}
                   className={`filterItem`}
                 >
-                  {item.charAt(0).toUpperCase() + item.slice(1)}
+                  {item}
                 </label>
                 </div>
             )
