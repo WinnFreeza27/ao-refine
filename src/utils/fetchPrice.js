@@ -4,7 +4,6 @@ import axios from 'axios'
 export const fetchPrice = async (items) => {
     try {
         const itemString = items.join(',');
-        console.log(itemString)
         const url = `https://east.albion-online-data.com/api/v2/stats/history/${itemString}?time-scale=1`;
         const response = await axios.get(url);
         const price = takePrice(response.data);

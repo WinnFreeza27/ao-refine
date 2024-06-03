@@ -1,9 +1,6 @@
 import { useCalculateData } from "../../../hooks/useCalculateData"
-import { useSelectedItem } from "../../../hooks/useSelectedItem"
-import { useFormData } from "../../../hooks/useFormData"
 import {convertCalculateData} from "../../../utils/convertCalculateData"
 import ItemCalculateCard from "../../ui/Cards/ItemCalculateCard"
-import Blackoverlay from "../../ui/Overlay/blackOverlay"
 import CalculationSummary from "./CalculationSummary"
 import { useNavigate, useNavigationType } from "react-router-dom"
 import { useEffect } from "react"
@@ -11,8 +8,7 @@ import { useEffect } from "react"
 
 export default function CalculationDetail() {
     const {calculateData, removeCalculateData} = useCalculateData()
-    const {removeSelected, removeSelectedData} = useSelectedItem()
-    const {formData, resetFormData} = useFormData()
+
     const navigate = useNavigate();
     const navType = useNavigationType()
     
@@ -26,28 +22,14 @@ export default function CalculationDetail() {
         removeCalculateData();
         navigate("/input");
     };
-    const onClose = () => {
-        if(formData) {
-            resetFormData()
-            navigate("/")
-        }
-        removeCalculateData()
-        removeSelected()
-        removeSelectedData()
-    }
 
+   
 
     let convertedData;
     if(calculateData) {
         convertedData = convertCalculateData(calculateData.data, calculateData.formData)
     }
 
-    let gridColsStyle;
-    if(convertedData?.data["craft-resource"].length == 2) {
-        gridColsStyle = "2xl:grid-cols-2"
-    } else if(convertedData?.data["craft-resource"].length > 3) {
-        gridColsStyle = "2xl:grid-cols-3"
-    }
 
     return(
         <>
@@ -62,10 +44,10 @@ export default function CalculationDetail() {
                         </div>
                         
                     </div> 
-                    <div className="flex flex-col gap-5">
-                    <div className="flex flex-col p-3 border border-bd-grey rounded-lg">
+                    <div className="flex flex-col gap-5 w-full justify-center items-center">
+                    <div className="flex flex-col p-3 border border-bd-grey rounded-lg w-full xl:w-max xl:min-w-[50%]">
                     <span className="self-center text-base lg:text-lg mb-3">Detail of material item</span>
-                    <div className={`flex flex-col xl:grid xl:grid-cols-2 gap-3 ${gridColsStyle}`}>
+                    <div className={`flex flex-col xl:flex-row xl:flex-wrap justify-items-center gap-3`}>
                         {convertedData?.data["craft-resource"].length > 0 ? convertedData.data["craft-resource"].map((res,index) => {
                             return (
                         <ItemCalculateCard key={index} 
@@ -77,7 +59,7 @@ export default function CalculationDetail() {
                         }): null} 
                     </div>
                     </div>
-                    <div className="flex flex-col gap-3 p-3 border border-bd-grey rounded-lg xl:max-w-[50%]">
+                    <div className="flex flex-col gap-3 p-3 border border-bd-grey rounded-lg w-full xl:max-w-[50%] xl:mx-auto">
                         <span className="self-center text-base lg:text-lg">Detail of crafted item</span>
                         {convertedData !== null ? 
                             <ItemCalculateCard
@@ -88,7 +70,7 @@ export default function CalculationDetail() {
                         />
                         :null}
                     </div>
-                    <div className="flex flex-col gap-3 xl:w-[50%] p-3 border border-bd-grey rounded-lg">
+                    <div className="flex flex-col gap-3 xl:w-[50%] p-3 border border-bd-grey rounded-lg w-full xl:mx-auto">
                     <span className="self-center text-base lg:text-lg">Summary</span>
                        <CalculationSummary 
                         summaryData={convertedData.summaryData}

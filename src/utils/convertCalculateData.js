@@ -23,25 +23,22 @@ export const convertCalculateData = (data, formData) => {
     //Extract count from craft resurce and add into storage.items
     data["craft-resource"].map((res,index) => {
         const itemCount = parseInt(res.Count)
-        storage.items.push({[`item${index + 1}`]: {itemCount}})
+        const itemCountId = `${res.ItemsName}`
+        storage.items.push({itemName: itemCountId, itemCount})
+        return {itemName: itemCountId, itemCount}
     })
-    
-    //Extract itemNeed (count) and put into array of object this data need to perform calcItemNeed function
-    const itemsCount = storage.items.map((item, index) => {
-        const itemNeed = item[`item${index + 1}`].itemCount
-        const key = Object.keys(item)[0]
-        return {itemName: key, itemNeed}
-    })
+    const itemsCount = storage.items;
     const calcItemNeed = refineCalculate(itemPerCraft, targetCraftQty, itemsCount, returnRate)
     //to extract the itemPrice and itemNeed and put it inside the storage.items , to then pass it into summaryData
     const resData = data["craft-resource"].map((res,index) => {
-        const itemPrice = parseInt(formData[`item${index+1}price-form`])
-        const itemNeed = parseInt(calcItemNeed[`item${index+1}`])
-        storage.items[index] = {[`item${index + 1}`] :{...storage.items[index][`item${index + 1}`], itemPrice, itemNeed}}
+        const itemName = res.ItemsName
+        // const itemPricId = 
+        const itemPrice = parseInt(formData[`item${index + 1}price-form`])
+        const itemNeed = parseInt(calcItemNeed[itemName])
+        storage.items[index] = {[itemName] :{itemPrice, itemNeed}}
         return {...res, itemPrice, itemNeed}
     })
     const resultItems = Object.values(Object.assign({}, ...storage.items))
-
     return {
         data: {...data, "craft-resource": resData},
         formData: {...formData},
