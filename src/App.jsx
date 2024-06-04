@@ -5,6 +5,7 @@ import ErrorApp from './component/ui/Status/ErrorStatus'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import RefineInputPage from './pages/Refine/RefineInputPage'
 import RefineCalculationPage from './pages/Refine/RefineCalculationPage'
+import FilterSetting from './component/common/NavSetting/FilterSetting'
 
 
 const router = createBrowserRouter([
@@ -30,6 +31,7 @@ function App() {
   if(error) return (<ErrorApp status={error}/>)
   return (
       <>
+      <FilterSetting />
       <RouterProvider router={router} />
       </>
   )

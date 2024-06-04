@@ -43,10 +43,13 @@
         @apply bg-bg-transparent border border-bd-grey rounded-lg
     }
     .refine-box{
-        @apply mb-3 mx-auto text-white w-[95%] overflow-auto font-jetbrains mt-5 min-h-[70vh]
+        @apply mb-3 mx-auto text-white w-[95%] overflow-auto mt-5 min-h-[70vh]
     }
     input[name="recipe-radio"]:checked + label{
         @apply bg-bd-grey
+    }
+    body{
+        @apply font-jetbrains
     }
 }
 

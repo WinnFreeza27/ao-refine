@@ -3,7 +3,6 @@ import { useForm } from "react-hook-form";
 import { useNavigate, useNavigationType } from "react-router-dom";
 
 
-import Filter from "../Filter/Filter.jsx";
 import LoadingStatus from "../../ui/Status/LoadingStatus.jsx";
 import RefineForm from "./RefineForm.jsx";
 import RefineHeader from "./RefineHeader.jsx";
@@ -17,6 +16,7 @@ import { formList } from "./storage.js";
 import { recipeListMaker } from "../../../utils/recipeListMaker.js";
 import { findItemToFetch } from "../../../utils/findItemToFetch.js";
 import { labelMaker } from "../../../utils/labelMaker.js";
+import RefineFilter from "./RefineFilter.jsx";
 
 export default function RefineInput() {
     const [fetchPriceData, setFetchPriceData] = useState(null);
@@ -120,7 +120,7 @@ export default function RefineInput() {
             {selected !== null && calculateData == null && recipeList[recipeSelected] !== undefined ?
                 <div className="refine-box text-sm md:text-base">
                     <RefineHeader selectedData={selectedData} onClose={onClose} />
-                    <Filter />
+                    <RefineFilter />
                     <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col w-full gap-3 p-1">
                         <RefineForm
                             register={register}
