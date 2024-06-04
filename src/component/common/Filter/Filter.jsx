@@ -2,7 +2,7 @@ import { useState } from 'react';
 import FilterLabel from './FilterLabel';
 import FilterItem from './FilterItem';
 
-export default function Filter({ filter, updateFilter, handleFilterChange, availableOptions, filterHeadList }) {
+export default function Filter({ filter, handleFilterChange, availableOptions, filterHeadList }) {
     const [activeFilter, setActiveFilter] = useState(null);
 
     // Handle the filter checkbox change
@@ -11,7 +11,6 @@ export default function Filter({ filter, updateFilter, handleFilterChange, avail
     };
 
     const handleFilter = (filterData) => {
-        updateFilter(filterData);
         setActiveFilter(null);
         handleFilterChange(filterData);
     };
@@ -28,7 +27,6 @@ export default function Filter({ filter, updateFilter, handleFilterChange, avail
         ));
         return acc;
     }, {});
-    console.log(renderList)
 
     return (
         <div className="filterBoxWrapper">

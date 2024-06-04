@@ -6,17 +6,20 @@ import { useNavigate, useNavigationType } from "react-router-dom";
 import LoadingStatus from "../../ui/Status/LoadingStatus.jsx";
 import RefineForm from "./RefineForm.jsx";
 import RefineHeader from "./RefineHeader.jsx";
+import RefineFilter from "./RefineFilter.jsx";
 
 import { useSelectedItem } from "../../../hooks/useSelectedItem.js";
 import { useCalculateData } from "../../../hooks/useCalculateData.js";
 import { useFormData } from "../../../hooks/useFormData.js";
 import { useFetchPrice } from "../../../hooks/useFetchPrice.js";
+import { useServerData } from "../../../hooks/useServerData.js";
 
 import { formList } from "./storage.js";
+import { serverUrlList } from "./storage.js";
 import { recipeListMaker } from "../../../utils/recipeListMaker.js";
 import { findItemToFetch } from "../../../utils/findItemToFetch.js";
 import { labelMaker } from "../../../utils/labelMaker.js";
-import RefineFilter from "./RefineFilter.jsx";
+
 
 export default function RefineInput() {
     const [fetchPriceData, setFetchPriceData] = useState(null);
@@ -30,7 +33,8 @@ export default function RefineInput() {
     const { calculateData, updateCalculateData, removeCalculateData } = useCalculateData();
     const recipeList = recipeListMaker(selectedData);
     const itemToFetch = findItemToFetch(selectedData, recipeSelected);
-
+    const { serverData} = useServerData()
+    
     const formMethods = useForm();
     const { formData, setFormData, resetFormData } = useFormData();
     const { register, handleSubmit, formState: { errors }, watch, setValue } = formMethods;
@@ -41,6 +45,18 @@ export default function RefineInput() {
             setLabelToFieldName(labelMaker(selectedData, recipeSelected));
         }
     }, [selectedData, recipeSelected]);
+    
+    useEffect(() => {
+        if(serverData) {
+            const IsAutoPrice = serverData.AutoPrice
+            const serverUrl = serverUrlList[serverData.Server]
+            
+            if(IsAutoPrice == "ON") {
+                handleFetchPrice(serverUrl)
+            }
+        }
+    }, [selected, serverData])
+
 
     useEffect(() => {
         if (fetchPriceData) {
@@ -81,15 +97,15 @@ export default function RefineInput() {
         }
     }, [formValues, formData, setFormData]);
 
-    const handleFetchPrice = async () => {
+    const handleFetchPrice = async (serverUrl) => {
         try {
-            const fetchedData = await fetchData(itemToFetch);
+            const fetchedData = await fetchData(itemToFetch, serverUrl);
             setFetchPriceData(fetchedData);
         } catch (error) {
             console.error('Error fetching data:', error);
         }
     };
-
+    
     const onSubmit = (data) => {
         const recipeData = recipeList[recipeSelected].data;
         updateCalculateData({
@@ -132,7 +148,6 @@ export default function RefineInput() {
                             selectedData={selectedData}
                             setRecipeSelected={setRecipeSelected}
                             labelToFieldName={labelToFieldName}
-                            handleFetchPrice={handleFetchPrice}
                         />
                     </form>
                 </div>

@@ -63,3 +63,9 @@ export const filterHeadList = [
         style:"w-28 sm:w-32"
     }
 ]
+
+export const serverUrlList = {
+    EAST: "https://east.albion-online-data.com",
+    WEST: "https://west.albion-online-data.com",
+    EUROPE: "https://europe.albion-online-data.com"
+}

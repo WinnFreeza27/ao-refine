@@ -6,10 +6,10 @@ export const useFetchPrice = () => {
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
   
-    const fetchDataWithState = async (items) => {
+    const fetchDataWithState = async (items, serverUrl) => {
       setLoading(true);
       try {
-        const data = await fetchPrice(items);
+        const data = await fetchPrice(items, serverUrl);
         setError(null);
         return data;
       } catch (error) {

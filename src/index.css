@@ -20,7 +20,7 @@
         @apply flex gap-2 h-full items-center w-full justify-between text-center hover:border-white/80 pl-2 md:pl-4
     }
     .filterBoxWrapper{
-        @apply flex mt-4 lg:mt-0 mb-4 text-white text-sm md:text-base sm:pr-10 gap-3 justify-start flex-wrap
+        @apply flex mt-4 mb-4 text-white text-sm md:text-base sm:pr-10 gap-3 justify-start flex-wrap
     }
     .item-card{
         box-shadow: rgba(0,0,0,0.8),0 4px 6px rgba(0,0,0,.04);
@@ -43,7 +43,7 @@
         @apply bg-bg-transparent border border-bd-grey rounded-lg
     }
     .refine-box{
-        @apply mb-3 mx-auto text-white w-[95%] overflow-auto mt-5 min-h-[70vh]
+        @apply mb-3 mx-auto text-white w-[95%] overflow-auto min-h-[70vh]
     }
     input[name="recipe-radio"]:checked + label{
         @apply bg-bd-grey

@@ -2,10 +2,14 @@ import Filter from "../Filter/Filter";
 import { filterHeadList } from "./storage"
 import { useState } from "react";
 import { useData } from "../../../hooks/useData";
+import { useServerData } from "../../../hooks/useServerData";
+
 
 export default function FilterSetting() {
-    const [filter, setFilter] = useState({"AutoPrice": "OFF", "Server": "EAST"});
     const { data } = useData();
+
+    const {serverData, updateServerData} = useServerData()
+
 
     const filterList = {
             "AutoPrice": ["ON","OFF"],
@@ -13,24 +17,22 @@ export default function FilterSetting() {
         }
 
     const handleFilterChange = (filterData) => {
-        setFilter({...filter, ...filterData})
+        updateServerData(filterData)
     }
-    console.log(filter)
     
 
     return (
-        <>
+        <div className="flex w-full mx-2 justify-center">
             {Object.keys(filterList).length > 0 ? (
             <Filter
-            filter={filter}
-            updateFilter={handleFilterChange}
+            filter={serverData}
             data={data}
             handleFilterChange={handleFilterChange}
             availableOptions={filterList}
             filterHeadList={filterHeadList}
         />
         ) : null}
-        </>
+        </div>
         
     )
 }

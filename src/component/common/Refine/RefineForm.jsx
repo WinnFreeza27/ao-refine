@@ -5,7 +5,7 @@ import VariationSelector from "../../ui/Forms/VariationSelector.jsx";
 import ButtonXn from "../../ui/Buttons/Button.jsx";
 import { formatNumber } from "../../../utils/formatNumber.js";
 
-export default function RefineForm ({ register, errors, recipeList, recipeSelected, formList, watch, selectedData, setRecipeSelected, labelToFieldName, handleFetchPrice }) {
+export default function RefineForm ({ register, errors, recipeList, recipeSelected, formList, watch, selectedData, setRecipeSelected, labelToFieldName}) {
     const focusValue = watch("focuscost-form");
     const qtyValue = watch("targetCraftQty");
 
@@ -75,11 +75,6 @@ export default function RefineForm ({ register, errors, recipeList, recipeSelect
                     </>
                 )}
                 <div className="w-full inline-flex items-center justify-center gap-3 my-5 lg:justify-start">
-                            <ButtonXn
-                                text={"Fetch"}
-                                type={"button"}
-                                onClick={handleFetchPrice}
-                            />
                             <ButtonXn
                                 text={"Calculate"}
                                 type={"submit"}

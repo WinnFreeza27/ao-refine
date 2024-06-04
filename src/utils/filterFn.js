@@ -1,6 +1,6 @@
 export const filterFn =  (data, filterRules) => {
     const { Categories, Tier, EnchantmentLevel } = filterRules;
-  const categoryData = data[Categories];
+    const categoryData = data[Categories];
 
   const result = [];
 

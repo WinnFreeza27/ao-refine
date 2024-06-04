@@ -25,21 +25,22 @@ export default function RefineFilter() {
     }, [filter, data]);
 
     const handleFilterChange = (filterData) => {
+        updateFilter(filterData)
         if (data && filterData.Tier) {
-            const [filteredData] = filterFn(data, filterData);
+            const currentFilter = {...filter, ...filterData}
+            const [filteredData] = filterFn(data, currentFilter);
             updateSelected(filteredData.ItemsName);
             updateSelectedData(filteredData);
-            const availableOptions = getAvailableOptions(data, filterData);
+            const availableOptions = getAvailableOptions(data, currentFilter);
             updateFilterList(availableOptions);
         }
     };
-    console.log(filterList)
+
     return (
         <>
         {Object.keys(filterList).length > 0 ? (
             <Filter
             filter={filter}
-            updateFilter={updateFilter}
             data={data}
             handleFilterChange={handleFilterChange}
             availableOptions={filterList}

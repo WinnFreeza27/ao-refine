@@ -23,7 +23,7 @@ export const getAvailableOptions = (data, currentFilter) => {
       Tier: [],
       EnchantmentLevel: []
     };
-  
+
     const currentCategoryData = data[Categories];
   
     // Check if the current category and tier have the current enchantment level

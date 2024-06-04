@@ -1,5 +1,4 @@
 export default function FilterLabel({activeFilter,filter,renderList,handleActiveFilter, type}) {
-    console.log(type)
     return (
         <>
            <div className="relative">
