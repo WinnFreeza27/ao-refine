@@ -134,7 +134,7 @@ export default function RefineInput() {
     return (
         <>
             {selected !== null && calculateData == null && recipeList[recipeSelected] !== undefined ?
-                <div className="refine-box text-sm md:text-base">
+                <div className="refine-box text-sm md:text-base mt-2">
                     <RefineHeader selectedData={selectedData} onClose={onClose} />
                     <RefineFilter />
                     <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col w-full gap-3 p-1">

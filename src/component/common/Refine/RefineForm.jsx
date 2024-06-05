@@ -78,7 +78,7 @@ export default function RefineForm ({ register, errors, recipeList, recipeSelect
                             <ButtonXn
                                 text={"Calculate"}
                                 type={"submit"}
-                                customStyle={"bg-cyanide hover:bg-cyanide/90"}
+                                customStyle={"bg-white border border-transparent hover:bg-bg-transparent hover:border-bd-grey hover:text-white"}
                             />
             </div>
             </div>

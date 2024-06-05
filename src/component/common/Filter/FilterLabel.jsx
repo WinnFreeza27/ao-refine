@@ -2,7 +2,7 @@ export default function FilterLabel({activeFilter,filter,renderList,handleActive
     return (
         <>
            <div className="relative">
-                <label htmlFor={type} className={`cursor-pointer flex items-center justify-center text-center h-10 rounded-lg border w-max border-bd-grey bg-bg-transparent hover:bg-black`}>
+                <label htmlFor={type} className={`cursor-pointer flex items-center justify-center text-center h-10 rounded-lg border w-max border-bd-grey hover:bg-black ${activeFilter == `${type}Filter` ? "bg-black" : "bg-bg-transparent" }`}>
                     <div className="filterLabel">
                     <span>{type == "EnchantmentLevel" ? "Enchantment" : type.charAt(0).toUpperCase() + type.slice(1)}</span>
                     <input type="checkbox" id={type} onChange={() => handleActiveFilter(`${type}Filter`)} checked={activeFilter == `${type}Filter`} className="appearance-none"/>

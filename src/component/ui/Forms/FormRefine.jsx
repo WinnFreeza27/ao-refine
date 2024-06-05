@@ -18,7 +18,7 @@ function FormRefine({ percentage, text, id, register ,errors, readOnly, readOnly
                            
             ) : null}  
                 </span>
-                <div className="w-full bg-bg-transparent flex input-form items-center">
+                <div className="w-full bg-bg-transparent opacity-70 cursor-not-allowed flex input-form items-center">
                     <div className="h-full py-2 px-3 w-full text-gray-600 overflow-auto">{readOnlyText}</div>
                 </div>
             </div>
@@ -42,11 +42,11 @@ function FormRefine({ percentage, text, id, register ,errors, readOnly, readOnly
             </span>            
         {percentage == true 
                             ?
-                            <div className="w-full  bg-bg-transparent flex input-form items-center p-1">
+                            <div className="relative group/input">
                                 <Form 
                                 inputType={"text"} 
                                 id={id} 
-                                styleClass={formClass !== undefined ? formClass : "bg-bg-transparent remove-arrow py-1 px-2 w-full"} 
+                                styleClass={formClass !== undefined ? formClass : "bg-bg-transparent input-form remove-arrow py-2 px-3 w-full group-hover/input:bg-black"} 
                                 noDefaultClass={true}
                                 register = {register(id , {
                                     required,
@@ -55,13 +55,15 @@ function FormRefine({ percentage, text, id, register ,errors, readOnly, readOnly
                                         message: 'Invalid number format',
                                     }})}
                                 />
-                                <span className="mr-3">%</span>
+                                <div className="absolute inset-y-0 max-h-max right-3 bg-transparent flex items-center pointer-events-none">
+                                <span className="text-gray-500 sm:text-sm">%</span>
+                    </div>
                             </div>
                         : 
                             <Form 
                             inputType={"text"} 
                             id={id} 
-                            styleClass={formClass !== undefined ? formClass : "bg-bg-transparent remove-arrow py-2 px-3 w-full"} 
+                            styleClass={formClass !== undefined ? formClass : "bg-bg-transparent remove-arrow py-2 px-3 w-full hover:bg-black"} 
                             register = {register(id , {
                                     required,
                                     pattern: {
