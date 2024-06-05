@@ -17,7 +17,7 @@
         @apply cursor-pointer px-5 py-3 inline-block w-full hover:bg-bd-grey peer-checked:bg-bd-grey
     }
     .filterLabel{
-        @apply flex gap-2 h-full items-center w-full justify-between text-center hover:border-white/80 pl-2 md:pl-4
+        @apply flex gap-1 h-full items-center w-full justify-between text-center hover:border-white/80 pl-2 md:pl-4
     }
     .filterBoxWrapper{
         @apply flex mt-4 mb-4 text-white text-sm md:text-base sm:pr-10 gap-3 justify-start items-center flex-wrap

@@ -13,16 +13,16 @@ export default function FilterSetting() {
 
     const filterList = {
             "AutoPrice": ["ON","OFF"],
-            "Server": ["EAST","EUROPE","WEST"]
+            "Server": ["EAST","EU","WEST"]
         }
 
     const handleFilterChange = (filterData) => {
         updateServerData(filterData)
     }
     
-
+    
     return (
-        <div className="flex w-full mx-auto justify-center items-center pl-2 bg-bg-transparent border-b border-bd-grey">
+        <div className="flex w-full mx-auto justify-center items-center px-2 bg-bg-transparent border-b border-bd-grey">
             {Object.keys(filterList).length > 0 ? (
             <Filter
             filter={serverData}

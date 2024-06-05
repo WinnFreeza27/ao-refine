@@ -67,5 +67,5 @@ export const filterHeadList = [
 export const serverUrlList = {
     EAST: "https://east.albion-online-data.com",
     WEST: "https://west.albion-online-data.com",
-    EUROPE: "https://europe.albion-online-data.com"
+    EU: "https://europe.albion-online-data.com"
 }
