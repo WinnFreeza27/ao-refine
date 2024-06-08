@@ -42,7 +42,7 @@ function FormRefine({ percentage, text, id, register ,errors, readOnly, readOnly
             </span>            
         {percentage == true 
                             ?
-                            <div className="relative group/input">
+                            <div className="relative group/input h-max-content flex items-center">
                                 <Form 
                                 inputType={"text"} 
                                 id={id} 
@@ -53,9 +53,13 @@ function FormRefine({ percentage, text, id, register ,errors, readOnly, readOnly
                                     pattern: {
                                         value: /^\d*\.?\d*$/,
                                         message: 'Invalid number format',
-                                    }})}
+                                    },
+                                    validate: {
+                                        maxValue: value => parseFloat(value) <= 100 || 'Max value is 100%',
+                                        },
+                                    })}
                                 />
-                                <div className="absolute inset-y-0 max-h-max right-3 bg-transparent flex items-center pointer-events-none">
+                                <div className="absolute max-h-max right-3 bg-transparent flex items-center justify-center pointer-events-none">
                                 <span className="text-gray-500 sm:text-sm">%</span>
                     </div>
                             </div>
