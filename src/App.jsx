@@ -6,19 +6,24 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import RefineInputPage from './pages/Refine/RefineInputPage'
 import RefineCalculationPage from './pages/Refine/RefineCalculationPage'
 import FilterSetting from './component/common/NavSetting/FilterSetting'
+import HomePage from './pages/Main/HomePage'
 
 
 const router = createBrowserRouter([
   {
     path: "/",
+    element: <HomePage />
+  },
+  {
+    path: "/refine",
     element: <RefinePage />
   },
   {
-    path: "/input",
+    path: "/refine/input",
     element: <RefineInputPage />
   },
   {
-    path: "/result",
+    path: "/refine/result",
     element: <RefineCalculationPage />
   }
 ])

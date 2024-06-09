@@ -20,7 +20,7 @@ export default function CalculationDetail() {
 
     const onBack = () => {
         removeCalculateData();
-        navigate("/input", { state: 'POP' });
+        navigate("/refine/input", { state: 'POP' });
     };
 
    
@@ -48,7 +48,7 @@ export default function CalculationDetail() {
                     <div className="flex flex-col p-3 border border-bd-grey rounded-lg w-full xl:w-max xl:min-w-[50%]">
                     <span className="self-center text-base lg:text-lg mb-3">Detail of material item</span>
                     <div className={`flex flex-col xl:flex-row xl:flex-wrap justify-items-center gap-3`}>
-                        {convertedData?.data["craft-resource"].length > 0 ? convertedData.data["craft-resource"].map((res,index) => {
+                        {convertedData?.data["refine-resource"].length > 0 ? convertedData.data["refine-resource"].map((res,index) => {
                             return (
                         <ItemCalculateCard key={index} 
                             item={res["resource-items"]}

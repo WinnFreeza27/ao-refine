@@ -1,6 +1,6 @@
 export const recipeListMaker = (selectedData) => {
     const recipeList = []
-    selectedData["craft-resource"]?.map((item,index) => {
+    selectedData["refine-resource"]?.map((item,index) => {
         
         recipeList.push(
             {

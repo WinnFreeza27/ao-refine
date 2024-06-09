@@ -141,9 +141,9 @@ export default function RefineInput() {
         const recipeData = recipeList[recipeSelected].data;
         updateCalculateData({
             formData: { ...data, itemPerCraft: recipeList[recipeSelected].amountCrafted },
-            data: { ...selectedData, "craft-resource": recipeData }
+            data: { ...selectedData, "refine-resource": recipeData }
         });
-        navigate("/result");
+        navigate("/refine/result");
     };
 
     // Set form data value by label
@@ -159,7 +159,7 @@ export default function RefineInput() {
         setRecipeSelected(0);
         removeSelected();
         resetFormData();
-        navigate("/");
+        navigate("/refine");
     };
 
     if (loading) return (<LoadingStatus />);

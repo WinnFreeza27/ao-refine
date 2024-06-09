@@ -62,7 +62,7 @@ export default function ItemRefine() {
         </div>
         <div className="flex flex-row flex-wrap gap-3 justify-center w-[95%] sm:w-[90%] mx-auto mt-3">
         {images?.length > 0 ? 
-            <ImageLazy images={images} style={{img: "w-full h-full", div: "item-card"}} imageOnly={false}/>
+            <ImageLazy images={images} style={{img: "w-full h-full", div: "item-card"}} imageOnly={false} linkTo={"/refine/input"}/>
            : null
             }
         </div>

@@ -8,7 +8,7 @@ import { Link } from 'react-router-dom';
  * a style object, and a boolean indicating whether the images should only be displayed
  * without a link.
  */
-function ImageLazy ({ images, style, imageOnly }) {
+function ImageLazy ({ images, style, imageOnly, linkTo }) {
   // State to track whether the images are still loading
   const [loading, setLoading] = useState(true);
   
@@ -55,7 +55,7 @@ function ImageLazy ({ images, style, imageOnly }) {
           { imageOnly ? (
             <img src={image.src} alt={image.alt} className={style.img} id={image.id} onClick={image.onClick} />
           ) : (
-            <Link to={"/input"} className={style.div} key={index}>
+            <Link to={linkTo} className={style.div} key={index}>
               <img src={image.src} alt={image.alt} className={style.img} id={image.id} onClick={image.onClick} />
             </Link>
           )}

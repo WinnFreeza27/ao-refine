@@ -1,9 +1,9 @@
 export const labelMaker = (selectedData, recipeSelected) => {
     const listOfLabel = [];
-    if (selectedData["craft-resource"]) {
+    if (selectedData["refine-resource"]) {
         const craftedLabel = selectedData.ItemsName;
         const craftedField = "sellprice-form";
-        const resourceItem = selectedData["craft-resource"][recipeSelected];
+        const resourceItem = selectedData["refine-resource"][recipeSelected];
         resourceItem.forEach((resItem, index) => {
             const fieldName = `item${index + 1}price-form`;
             const labelName = resItem.ItemsName;

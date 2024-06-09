@@ -4,7 +4,7 @@ export const findItemToFetch = (data, indexSelected) => {
     if(data && data.ItemsName) {
         const targetName = data.ItemsName;
         items.add(targetName)
-        const craftResource = data["craft-resource"]
+        const craftResource = data["refine-resource"]
         if(craftResource.length > 0) {
             craftResource[indexSelected].map((item) => {
                 items.add(item.ItemsName)

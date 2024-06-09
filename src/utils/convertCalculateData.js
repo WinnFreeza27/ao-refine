@@ -21,7 +21,7 @@ export const convertCalculateData = (data, formData) => {
     }
 
     //Extract count from craft resurce and add into storage.items
-    data["craft-resource"].map((res,index) => {
+    data["refine-resource"].map((res,index) => {
         const itemCount = parseInt(res.Count)
         const itemCountId = `${res.ItemsName}`
         storage.items.push({itemName: itemCountId, itemCount})
@@ -30,7 +30,7 @@ export const convertCalculateData = (data, formData) => {
     const itemsCount = storage.items;
     const calcItemNeed = refineCalculate(itemPerCraft, targetCraftQty, itemsCount, returnRate)
     //to extract the itemPrice and itemNeed and put it inside the storage.items , to then pass it into summaryData
-    const resData = data["craft-resource"].map((res,index) => {
+    const resData = data["refine-resource"].map((res,index) => {
         const itemName = res.ItemsName
         // const itemPricId = 
         const itemPrice = parseInt(formData[`item${index + 1}price-form`])
@@ -40,7 +40,7 @@ export const convertCalculateData = (data, formData) => {
     })
     const resultItems = Object.values(Object.assign({}, ...storage.items))
     return {
-        data: {...data, "craft-resource": resData},
+        data: {...data, "refine-resource": resData},
         formData: {...formData},
         summaryData: {items: resultItems, refineCost: parsedData.refineCost, taxCost: parsedData.taxCost, targetCraftQty: parsedData.targetCraftQty, sellPrice: parsedData.sellPrice}
     }

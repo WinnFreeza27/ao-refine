@@ -18,8 +18,8 @@ export default function useFetchData() {
 
 async function fetchSupabase() {
         const {data, error, status} = await supabase()
-        .from('crafting-requirements')
-        .select(`*, craft-resource(
+        .from('refine-data')
+        .select(`*, refine-resource(
         *,
         resource-items(
             *
